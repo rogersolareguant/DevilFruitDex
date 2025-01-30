@@ -1,0 +1,41 @@
+{
+    "@@locale": "en",
+    "search": "Search",
+    "noFruit": "This Is Not a Devil Fruit :(",
+    "noFav": "You Don't Have Favourite Devil Fruits",
+    "none": "None",
+    "devilFruits": "Devil Fruits",
+    "favourites": "Favourites",
+    "settings": "Settings",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "darkMode": "Dark Mode",
+
+    "eat": "Eat?",
+    "justEat": "You just ate the ",
+    "getPower": "! Now, you wield the incredible power of the ",
+    "weakWater": ", but be careful, water has become your greatest weakness, taking away from you the ability of swim.",
+
+
+
+    "about": "About",
+    "fullName": "Full name",
+    "name": "Name",
+    "description": "Description",
+
+    "loginPage": "Login page",
+    "newHere": "New here",
+    "register": "Register",
+    "email": "Email",
+    "requiredField": "This field is required",
+    "password": "Password",
+    "succesUserCreation": "User creation successed",
+    "login": "Login",
+    "notFoundUser": "User not found",
+    "incorrectPassword": "Incorrect password",
+
+    "createUser": "Create User",
+    "usedEmail": "The email is already in use",
+    "weakPassword": "Weak password"
+}
