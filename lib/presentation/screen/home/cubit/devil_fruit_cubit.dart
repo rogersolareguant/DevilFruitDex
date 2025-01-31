@@ -68,13 +68,15 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
     }
   }
 
-  Future<void> deviceLocation() async {
+  Future<LatLng> deviceLocation() async {
     try {
       LatLng location = await _locationRepository.getPosition();
       emit(state.copyWith(
           status: DevilFruitStatus.loaded, newPosition: location));
+      return location;
     } catch (e) {
       emit(state.copyWith(status: DevilFruitStatus.error));
+      return state.newPosition;
     }
   }
 

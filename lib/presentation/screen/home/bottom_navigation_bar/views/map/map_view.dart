@@ -6,8 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapView extends StatefulWidget {
-
-  MapView({super.key});
+  const MapView({super.key});
 
   @override
   State<MapView> createState() => _MapViewState();
@@ -41,10 +40,12 @@ class _MapViewState extends State<MapView> {
                     options: MapOptions(
                         initialCenter: state.newPosition,
                         initialZoom: 4,
+                        interactionOptions: InteractionOptions(flags: InteractiveFlag.drag),
                         onTap: (tapPosition, point) {
                           context
                               .read<DevilFruitCubit>()
                               .updateNewPosition(point);
+                              _mapController.move(point, 4);
                         }),
                     children: [
                       TileLayer(
@@ -99,8 +100,9 @@ class _MapViewState extends State<MapView> {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.read<DevilFruitCubit>().deviceLocation();
+            onPressed: () async {
+              final newPosition = await context.read<DevilFruitCubit>().deviceLocation();
+              _mapController.move(newPosition, 4);
             },
             backgroundColor: Theme.of(context).cardColor,
             child: Icon(Icons.my_location, color: Theme.of(context).focusColor),
