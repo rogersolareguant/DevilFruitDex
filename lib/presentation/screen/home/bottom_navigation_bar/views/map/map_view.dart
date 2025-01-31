@@ -5,11 +5,22 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapView extends StatelessWidget {
+class MapView extends StatefulWidget {
 
   MapView({super.key});
 
+  @override
+  State<MapView> createState() => _MapViewState();
+}
+
+class _MapViewState extends State<MapView> {
   final MapController _mapController = MapController();
+
+  @override
+  void dispose() {
+    _mapController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +99,7 @@ class MapView extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () async {
+            onPressed: () {
               context.read<DevilFruitCubit>().deviceLocation();
             },
             backgroundColor: Theme.of(context).cardColor,
