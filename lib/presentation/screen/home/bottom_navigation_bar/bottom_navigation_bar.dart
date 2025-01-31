@@ -5,17 +5,17 @@ import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 
-class BottomNavigationBarScreen extends StatefulWidget {
-  const BottomNavigationBarScreen({
+class HomeBottomNavigationBar extends StatefulWidget {
+  const HomeBottomNavigationBar({
     super.key,
   });
 
   @override
-  State<BottomNavigationBarScreen> createState() =>
-      _BottomNavigationBarScreenState();
+  State<HomeBottomNavigationBar> createState() =>
+      _HomeBottomNavigationBarState();
 }
 
-class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
+class _HomeBottomNavigationBarState extends State<HomeBottomNavigationBar> {
 
   int _selectedIndex = 2;
 
@@ -31,10 +31,10 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
       body: LazyIndexedStack(
         index: _selectedIndex,
         children: [
-          MapView(),
-          FavView(),
-          HomeView(),
-          SettingsView()
+          const MapView(),
+          const FavView(),
+          const HomeView(),
+          const SettingsView(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

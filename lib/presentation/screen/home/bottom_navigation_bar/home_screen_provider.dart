@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
 
             case DevilFruitStatus.loaded:
               return const SafeArea(
-                child: BottomNavigationBarScreen(),
+                child: HomeBottomNavigationBar(),
               );
 
             case DevilFruitStatus.error:
