@@ -64,6 +64,7 @@ class _MapViewState extends State<MapView> {
                           point: state.newPosition,
                           child: Icon(
                             Icons.location_on,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                           ),
                         ),
                         ...state.devilFruit.map((fruit) {
