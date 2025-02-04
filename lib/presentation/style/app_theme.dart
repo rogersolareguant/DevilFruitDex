@@ -56,6 +56,7 @@ abstract final class AppTheme {
         canvasColor: Colors.black,
         appBarTheme: _appBarThemeDark,
         popupMenuTheme: _popupMenuThemeDark,
+        focusColor: Colors.white,
         primaryIconTheme: const IconThemeData(color: Colors.white),
         iconTheme: const IconThemeData(color: Colors.white),
         textTheme: const TextTheme(
