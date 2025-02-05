@@ -44,11 +44,44 @@ void main() {
           },
           act: (cubit) => cubit.userLoaded(),
           expect: () => <SplashScreenState>[
-            const SplashScreenState(
+                const SplashScreenState(
                   status: SplashScreenStatus.loading,
                 ),
                 const SplashScreenState(
                   status: SplashScreenStatus.authenticated,
+                )
+              ]);
+
+      blocTest<SplashScreenCubit, SplashScreenState>(
+          'emit [SplashScreenStatus.loading and SplashScreenStatus.unauthenticated] when response is success',
+          build: () => cubit,
+          setUp: () {
+            when(mockAuthRepository.userLoaded())
+                .thenAnswer((_) => Future.value(null));
+          },
+          act: (cubit) => cubit.userLoaded(),
+          expect: () => <SplashScreenState>[
+                const SplashScreenState(
+                  status: SplashScreenStatus.loading,
+                ),
+                const SplashScreenState(
+                  status: SplashScreenStatus.unauthenticated,
+                )
+              ]);
+
+      blocTest<SplashScreenCubit, SplashScreenState>(
+          'emit [SplashScreenStatus.error] when response is not success',
+          build: () => cubit,
+          setUp: () {
+            when(mockAuthRepository.userLoaded()).thenThrow(Exception());
+          },
+          act: (cubit) => cubit.userLoaded(),
+          expect: () => <SplashScreenState>[
+                const SplashScreenState(
+                  status: SplashScreenStatus.loading,
+                ),
+                const SplashScreenState(
+                  status: SplashScreenStatus.error,
                 )
               ]);
     });

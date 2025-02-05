@@ -30,3 +30,4 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
     }
   }
 }
+
