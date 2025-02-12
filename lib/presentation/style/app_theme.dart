@@ -36,6 +36,11 @@ abstract final class AppTheme {
           headlineLarge: TextStyle(
               color: Colors.grey, fontSize: 17, fontWeight: FontWeight.bold),
           headlineSmall: TextStyle(fontSize: 14, color: Colors.grey),
+          displayLarge: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              fontFamily: 'Header',
+              color: Colors.black),
           displayMedium: TextStyle(fontSize: 20, color: Colors.black),
         ));
   }
@@ -82,6 +87,11 @@ abstract final class AppTheme {
           headlineLarge: TextStyle(
               color: Colors.grey, fontSize: 17, fontWeight: FontWeight.bold),
           headlineSmall: TextStyle(fontSize: 14, color: Colors.grey),
+          displayLarge: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              fontFamily: 'Header',
+              color: Colors.white),
           displayMedium: TextStyle(fontSize: 20, color: Colors.white),
         ));
   }

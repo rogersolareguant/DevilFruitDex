@@ -41,3 +41,39 @@ class ImagePositioned extends StatelessWidget {
     }
   }
 }
+
+
+class ImagePositionedEat extends StatelessWidget {
+  final DevilFruit devilFruit;
+
+  const ImagePositionedEat({
+    super.key,
+    required this.devilFruit,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (!(devilFruit.filename.contains('.png') ||
+        devilFruit.filename.contains('.jpg'))) {
+      return Container(
+          alignment: Alignment.topCenter,
+          child: Image.asset(
+            '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png',
+            scale: 2,
+            height: 180,
+            width: 180,
+          ),
+        );
+    } else {
+      return Container(
+          alignment: Alignment.topCenter,
+          child: Image.network(
+            devilFruit.filename,
+            fit: BoxFit.contain,
+            height: 180,
+            width: 180,
+          ),
+        );
+    }
+  }
+}
