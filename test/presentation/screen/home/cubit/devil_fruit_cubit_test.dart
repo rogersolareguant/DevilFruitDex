@@ -84,6 +84,24 @@ void main() {
               ]);
     });
 
+    group('favouriteFruits', () {
+      blocTest<DevilFruitCubit, DevilFruitState>(
+          'calls setFavourites when updating favourites',
+          build: () => cubit,
+          setUp: () {
+            when(mockFavouritesRepository.getFavourites(uid))
+                .thenAnswer((_) => Stream.value([1, 2]));
+            when(mockFavouritesRepository.setFavourites(uid, [3]))
+                .thenAnswer((_) => Future.value());
+          },
+          act: (cubit) => cubit.favouriteFruits(3),
+          expect: () => <DevilFruitState>[
+                const DevilFruitState(
+                  status: DevilFruitStatus.loaded,
+                )
+              ]);
+    });
+
     group('deviceLocation', () {
       blocTest<DevilFruitCubit, DevilFruitState>(
         'emit [location] when updates location correctly when deviceLocation is called',
@@ -179,7 +197,8 @@ void main() {
         build: () => cubit,
         act: (cubit) => cubit.updateNewPosition(LatLng(1, 103)),
         expect: () => <DevilFruitState>[
-          const DevilFruitState(status: DevilFruitStatus.loaded, newPosition: LatLng(1, 103)),
+          const DevilFruitState(
+              status: DevilFruitStatus.loaded, newPosition: LatLng(1, 103)),
         ],
       );
     });
@@ -190,7 +209,8 @@ void main() {
         build: () => cubit,
         act: (cubit) => cubit.updateEating(true),
         expect: () => <DevilFruitState>[
-          const DevilFruitState(status: DevilFruitStatus.loaded, isEating: true),
+          const DevilFruitState(
+              status: DevilFruitStatus.loaded, isEating: true),
         ],
       );
     });

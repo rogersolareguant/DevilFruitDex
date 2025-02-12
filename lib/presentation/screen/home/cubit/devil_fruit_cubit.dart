@@ -47,6 +47,7 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
     } catch (e) {
       emit(state.copyWith(
         status: DevilFruitStatus.error,
+        devilFruit: [],
       ));
     }
   }
@@ -63,6 +64,7 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
       }
 
       await _favRepository.setFavourites(uid, updateFavourites);
+      emit(state.copyWith(status: DevilFruitStatus.loaded));
     } catch (e) {
       emit(state.copyWith(status: DevilFruitStatus.error));
     }
@@ -75,7 +77,7 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
           status: DevilFruitStatus.loaded, newPosition: location));
       return location;
     } catch (e) {
-      emit(state.copyWith(status: DevilFruitStatus.error));
+      emit(state.copyWith(status: DevilFruitStatus.error, newPosition: state.newPosition));
       return state.newPosition;
     }
   }
@@ -110,25 +112,21 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
 
   void updateTypeFilter(String typeFilter) {
     emit(state.copyWith(
-        status: DevilFruitStatus.loaded, 
-        typeFilter: typeFilter));
+        status: DevilFruitStatus.loaded, typeFilter: typeFilter));
   }
 
   void updateFavTypeFilter(String favTypeFilter) {
     emit(state.copyWith(
-        status: DevilFruitStatus.loaded, 
-        favTypeFilter: favTypeFilter));
+        status: DevilFruitStatus.loaded, favTypeFilter: favTypeFilter));
   }
 
   void updateNewPosition(LatLng newPosition) {
     emit(state.copyWith(
-        status: DevilFruitStatus.loaded, 
-        newPosition: newPosition));
+        status: DevilFruitStatus.loaded, newPosition: newPosition));
   }
 
   void updateEating(bool isEating) {
-    emit(state.copyWith(status: DevilFruitStatus.loaded, 
-    isEating: isEating));
+    emit(state.copyWith(status: DevilFruitStatus.loaded, isEating: isEating));
   }
 
   void streamFavourteFruits() {

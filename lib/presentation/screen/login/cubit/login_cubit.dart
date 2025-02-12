@@ -70,3 +70,4 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(error: error));
   }
 }
+
