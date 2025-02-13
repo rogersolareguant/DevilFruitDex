@@ -40,12 +40,13 @@ class _MapViewState extends State<MapView> {
                     options: MapOptions(
                         initialCenter: state.newPosition,
                         initialZoom: 4,
-                        interactionOptions: InteractionOptions(flags: InteractiveFlag.drag),
+                        interactionOptions:
+                            InteractionOptions(flags: InteractiveFlag.drag),
                         onTap: (tapPosition, point) {
                           context
                               .read<DevilFruitCubit>()
                               .updateNewPosition(point);
-                              _mapController.move(point, 4);
+                          _mapController.move(point, 4);
                         }),
                     children: [
                       TileLayer(
@@ -60,7 +61,6 @@ class _MapViewState extends State<MapView> {
                       ]),
                       MarkerLayer(markers: [
                         Marker(
-                
                           point: state.newPosition,
                           child: Icon(
                             Icons.location_on,
@@ -102,7 +102,8 @@ class _MapViewState extends State<MapView> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              final newPosition = await context.read<DevilFruitCubit>().deviceLocation();
+              final newPosition =
+                  await context.read<DevilFruitCubit>().deviceLocation();
               _mapController.move(newPosition, 4);
             },
             backgroundColor: Theme.of(context).cardColor,
@@ -113,6 +114,3 @@ class _MapViewState extends State<MapView> {
     );
   }
 }
-
-
-
