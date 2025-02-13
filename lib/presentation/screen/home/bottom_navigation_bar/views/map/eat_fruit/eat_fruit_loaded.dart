@@ -70,7 +70,8 @@ class EatFruitLoaded extends StatelessWidget {
                                 height: 70,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Theme.of(context).dialogBackgroundColor,
+                                  color:
+                                      Theme.of(context).dialogBackgroundColor,
                                 )),
                           ),
                         ),
@@ -83,7 +84,8 @@ class EatFruitLoaded extends StatelessWidget {
                                 height: 70,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Theme.of(context).dialogBackgroundColor,
+                                  color:
+                                      Theme.of(context).dialogBackgroundColor,
                                 )),
                           ),
                         )
@@ -125,61 +127,97 @@ class EatFruitLoaded extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: CarouselSlider(
-                              options: CarouselOptions(
-                                  height: 200,
-                                  autoPlay: true,
-                                  enlargeCenterPage: true),
-                              items: devilFruit.type == 'Paramecia'
-                                  ? [
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia-gif.gif',
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia1.webp',
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia2.jpeg',
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia3.jpg',
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia4.avif',
-                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia5.avif',
-                                    ].map((imagePath) {
-                                      return Image.asset(imagePath,
-                                          fit: BoxFit.cover);
-                                    }).toList()
-                                  : devilFruit.type == 'Logia'
-                                      ? [
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia-gif.gif',
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia1.webp',
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia2.webp',
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia3.webp',
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia4.avif',
-                                          '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia5.avif',
-                                        ].map((imagePath) {
-                                          return Image.asset(imagePath,
-                                              fit: BoxFit.cover);
-                                        }).toList()
-                                      : devilFruit.type == 'Zoan' ||
-                                              devilFruit.type ==
-                                                  'Zoan Antique' ||
-                                              devilFruit.type == 'Zoan Mythique'
-                                          ? [
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan-gif.gif',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan1.webp',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan2.webp',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan3.jpg',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan4.jpg',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan5.webp',
-                                            ].map((imagePath) {
-                                              return Image.asset(imagePath,
-                                                  fit: BoxFit.cover);
-                                            }).toList()
-                                          : [
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile0.webp',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile1.webp',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile2.png',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile3.gif',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile4.jpg',
-                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile5.webp',
-                                            ].map((imagePath) {
-                                              return Image.asset(imagePath,
-                                                  fit: BoxFit.cover);
-                                            }).toList(),
-                            ),
+                                options: CarouselOptions(
+                                    height: 350,
+                                    autoPlay: true,
+                                    enlargeCenterPage: true),
+                                items: devilFruit.type == 'Paramecia'
+                                    ? [
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia-gif.gif',
+                                            fit: BoxFit.contain),
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia1.webp',
+                                            fit: BoxFit.contain),
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia2.jpeg',
+                                            fit: BoxFit.contain),
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia3.jpg',
+                                            fit: BoxFit.contain),
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia4.avif',
+                                            fit: BoxFit.contain),
+                                        Image.asset(
+                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia5.avif',
+                                            fit: BoxFit.contain),
+                                      ]
+                                    : devilFruit.type == 'Logia'
+                                        ? [
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia-gif.gif',
+                                                fit: BoxFit.contain),
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia1.webp',
+                                                fit: BoxFit.contain),
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia2.webp',
+                                                fit: BoxFit.contain),
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia3.webp',
+                                                fit: BoxFit.contain),
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia4.avif',
+                                                fit: BoxFit.contain),
+                                            Image.asset(
+                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia5.avif',
+                                                fit: BoxFit.cover),
+                                          ]
+                                        : devilFruit.type == 'Zoan' ||
+                                                devilFruit.type ==
+                                                    'Zoan Antique' ||
+                                                devilFruit.type ==
+                                                    'Zoan Mythique'
+                                            ? [
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan-gif.gif',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan1.webp',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan2.webp',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan3.jpg',
+                                                    fit: BoxFit.cover),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan4.jpg',
+                                                    fit: BoxFit.cover),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan5.webp',
+                                                    fit: BoxFit.cover),
+                                              ]
+                                            : [
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile0.webp',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile1.webp',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile2.png',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile3.gif',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile4.jpg',
+                                                    fit: BoxFit.contain),
+                                                Image.asset(
+                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile5.webp',
+                                                    fit: BoxFit.contain),
+                                              ]),
                           ),
                         ),
                       )
