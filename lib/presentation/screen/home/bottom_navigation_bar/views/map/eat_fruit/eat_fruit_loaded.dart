@@ -128,47 +128,47 @@ class EatFruitLoaded extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             child: CarouselSlider(
                                 options: CarouselOptions(
-                                    height: 350,
+                                    height: 200,
                                     autoPlay: true,
                                     enlargeCenterPage: true),
                                 items: devilFruit.type == 'Paramecia'
                                     ? [
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia-gif.gif',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia1.webp',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia2.jpeg',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia3.jpg',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia4.avif',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                         Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia5.avif',
-                                            fit: BoxFit.contain),
+                                            fit: BoxFit.cover),
                                       ]
                                     : devilFruit.type == 'Logia'
                                         ? [
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia-gif.gif',
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.cover),
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia1.webp',
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.cover),
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia2.webp',
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.cover),
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia3.webp',
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.cover),
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia4.avif',
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.cover),
                                             Image.asset(
                                                 '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia5.avif',
                                                 fit: BoxFit.cover),
@@ -181,13 +181,13 @@ class EatFruitLoaded extends StatelessWidget {
                                             ? [
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan-gif.gif',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan1.webp',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan2.webp',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan3.jpg',
                                                     fit: BoxFit.cover),
@@ -201,22 +201,22 @@ class EatFruitLoaded extends StatelessWidget {
                                             : [
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile0.webp',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile1.webp',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile2.png',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile3.gif',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile4.jpg',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                                 Image.asset(
                                                     '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile5.webp',
-                                                    fit: BoxFit.contain),
+                                                    fit: BoxFit.cover),
                                               ]),
                           ),
                         ),

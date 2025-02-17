@@ -35,66 +35,69 @@ class _MapViewState extends State<MapView> {
               ),
               child: Stack(
                 children: [
-                  FlutterMap(
-                    mapController: _mapController,
-                    options: MapOptions(
-                        initialCenter: state.newPosition,
-                        initialZoom: 4,
-                        interactionOptions:
-                            InteractionOptions(flags: InteractiveFlag.drag),
-                        onTap: (tapPosition, point) {
-                          context
-                              .read<DevilFruitCubit>()
-                              .updateNewPosition(point);
-                          _mapController.move(point, 4);
-                        }),
-                    children: [
-                      TileLayer(
-                        urlTemplate:
-                            'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-                      ),
-                      CircleLayer(circles: [
-                        CircleMarker(
-                            point: state.newPosition,
-                            color: Colors.blue.withOpacity(0.3),
-                            radius: 50)
-                      ]),
-                      MarkerLayer(markers: [
-                        Marker(
-                          point: state.newPosition,
-                          child: Icon(
-                            Icons.location_on,
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                          ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: FlutterMap(
+                      mapController: _mapController,
+                      options: MapOptions(
+                          initialCenter: state.newPosition,
+                          initialZoom: 4,
+                          interactionOptions:
+                              InteractionOptions(flags: InteractiveFlag.drag),
+                          onTap: (tapPosition, point) {
+                            context
+                                .read<DevilFruitCubit>()
+                                .updateNewPosition(point);
+                            _mapController.move(point, 4);
+                          }),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
                         ),
-                        ...state.devilFruit.map((fruit) {
-                          return Marker(
-                              point: fruit.position,
-                              width: 35,
-                              height: 35,
-                              child: GestureDetector(
-                                onTap: () {
-                                  double distance = Distance().as(
-                                      LengthUnit.Meter,
-                                      state.newPosition,
-                                      fruit.position);
-
-                                  //in 277903 out 380036
-                                  if (distance <= 380000) {
-                                    context.go('/home/eat/${fruit.id}');
-                                  } else {
-                                    context.go('/home/detail/${fruit.id}');
-                                  }
-                                },
-                                child: fruit.filename.contains('.png') ||
-                                        fruit.filename.contains('.jpg')
-                                    ? Image.network(fruit.filename)
-                                    : Image.asset(
-                                        '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png'),
-                              ));
-                        }),
-                      ]),
-                    ],
+                        CircleLayer(circles: [
+                          CircleMarker(
+                              point: state.newPosition,
+                              color: Colors.blue.withOpacity(0.3),
+                              radius: 50)
+                        ]),
+                        MarkerLayer(markers: [
+                          Marker(
+                            point: state.newPosition,
+                            child: Icon(
+                              Icons.location_on,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                          ),
+                          ...state.devilFruit.map((fruit) {
+                            return Marker(
+                                point: fruit.position,
+                                width: 35,
+                                height: 35,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    double distance = Distance().as(
+                                        LengthUnit.Meter,
+                                        state.newPosition,
+                                        fruit.position);
+                    
+                                    //in 277903 out 380036
+                                    if (distance <= 380000) {
+                                      context.go('/home/eat/${fruit.id}');
+                                    } else {
+                                      context.go('/home/detail/${fruit.id}');
+                                    }
+                                  },
+                                  child: fruit.filename.contains('.png') ||
+                                          fruit.filename.contains('.jpg')
+                                      ? Image.network(fruit.filename)
+                                      : Image.asset(
+                                          '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png'),
+                                ));
+                          }),
+                        ]),
+                      ],
+                    ),
                   ),
                 ],
               ),
