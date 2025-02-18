@@ -34,10 +34,10 @@ packages:
     dependency: "direct main"
     description:
       name: animate_do
-      sha256: "7a3162729f0ea042f9dd84da217c5bde5472ad9cef644079929d4304a5dc4ca0"
+      sha256: "874604dbe3ffbe2303c3f3332dcc44c8fdbc60025c666df2813e8b7594bb8e20"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.4"
+    version: "4.1.1"
   archive:
     dependency: transitive
     description:
