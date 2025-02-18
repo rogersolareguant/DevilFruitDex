@@ -121,57 +121,96 @@ class EatFruitLoaded extends StatelessWidget {
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
                         child: Visibility(
                           visible: state.isEating,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: CarouselSlider(
                                 options: CarouselOptions(
-                                    height: 200,
+                                    height: 250,
                                     autoPlay: true,
-                                    enlargeCenterPage: true),
+                                    enlargeCenterPage: true,
+                                    viewportFraction: 0.8
+                                    ),
                                 items: devilFruit.type == 'Paramecia'
                                     ? [
-                                        Image.asset(
-                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia-gif.gif',
-                                            fit: BoxFit.cover),
-                                        Image.asset(
-                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia1.webp',
-                                            fit: BoxFit.cover),
-                                        Image.asset(
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(20),
+                                          child: Image.asset(
+                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia-gif.gif',
+                                              fit: BoxFit.cover),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia1.webp',
+                                              fit: BoxFit.cover),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                       child:  Image.asset(
                                             '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia2.jpeg',
                                             fit: BoxFit.cover),
-                                        Image.asset(
-                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia3.jpg',
-                                            fit: BoxFit.cover),
-                                        Image.asset(
-                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia4.avif',
-                                            fit: BoxFit.cover),
-                                        Image.asset(
-                                            '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia5.avif',
-                                            fit: BoxFit.cover),
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia3.jpg',
+                                              fit: BoxFit.cover),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia4.avif',
+                                              fit: BoxFit.cover),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/paramecia5.avif',
+                                              fit: BoxFit.cover),
+                                        ),
                                       ]
                                     : devilFruit.type == 'Logia'
                                         ? [
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia-gif.gif',
-                                                fit: BoxFit.cover),
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia1.webp',
-                                                fit: BoxFit.cover),
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia2.webp',
-                                                fit: BoxFit.cover),
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia3.webp',
-                                                fit: BoxFit.cover),
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia4.avif',
-                                                fit: BoxFit.cover),
-                                            Image.asset(
-                                                '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia5.avif',
-                                                fit: BoxFit.cover),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia-gif.gif',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia1.webp',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia2.webp',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia3.webp',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia4.avif',
+                                                  fit: BoxFit.cover),
+                                            ),
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                  '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/logia5.avif',
+                                                  fit: BoxFit.cover),
+                                            ),
                                           ]
                                         : devilFruit.type == 'Zoan' ||
                                                 devilFruit.type ==
@@ -179,44 +218,80 @@ class EatFruitLoaded extends StatelessWidget {
                                                 devilFruit.type ==
                                                     'Zoan Mythique'
                                             ? [
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan-gif.gif',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan1.webp',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan2.webp',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan3.jpg',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan4.jpg',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan5.webp',
-                                                    fit: BoxFit.cover),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan-gif.gif',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan1.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan2.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan3.jpg',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan4.jpg',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/zoan5.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
                                               ]
                                             : [
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile0.webp',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile1.webp',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile2.png',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile3.gif',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile4.jpg',
-                                                    fit: BoxFit.cover),
-                                                Image.asset(
-                                                    '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile5.webp',
-                                                    fit: BoxFit.cover),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile0.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile1.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile2.png',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile3.gif',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile4.jpg',
+                                                      fit: BoxFit.cover),
+                                                ),
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  child: Image.asset(
+                                                      '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/smile5.webp',
+                                                      fit: BoxFit.cover),
+                                                ),
                                               ]),
                           ),
                         ),
