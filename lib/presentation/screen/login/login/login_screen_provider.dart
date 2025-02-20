@@ -1,4 +1,4 @@
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart';
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:devilfruitdex/presentation/screen/login/cubit/login_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/login/login/login_screen_initial.dart';
 import 'package:devilfruitdex/presentation/screen/widgets/screen_error_state.dart';
@@ -13,7 +13,7 @@ class LoginScreenProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          LoginCubit(repository: context.read<AuthenticationRepository>()),
+          LoginCubit(repository: context.read<UserRepository>()),
       child: const LoginScreen(),
     );
   }

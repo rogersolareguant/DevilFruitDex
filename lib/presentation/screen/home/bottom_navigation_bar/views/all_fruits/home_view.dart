@@ -44,7 +44,7 @@ class HomeView extends StatelessWidget {
                   child: HomeSortButton()),
               InkWell(
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
+                  context.read<DevilFruitCubit>().signOut;
                   context.go('/login');
                 },
                 child: Padding(

@@ -5,6 +5,7 @@ import 'package:devilfruitdex/domain/model/devil_fruit.dart';
 import 'package:devilfruitdex/domain/repository/devil_fruit_repository.dart';
 import 'package:devilfruitdex/domain/repository/favourites_repository.dart';
 import 'package:devilfruitdex/domain/repository/location_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -138,6 +139,13 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
 
       emit(state.copyWith(favourtieDevilFruitList: favourtieFruits));
     });
+  }
+
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+    emit(state.copyWith(
+      status: DevilFruitStatus.loading,
+    ));
   }
 
   @override

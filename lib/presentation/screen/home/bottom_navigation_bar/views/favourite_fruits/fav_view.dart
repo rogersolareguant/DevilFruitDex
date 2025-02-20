@@ -45,7 +45,7 @@ class FavView extends StatelessWidget {
                   child: FavHomeSortButton()),
               InkWell(
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
+                  context.read<DevilFruitCubit>().signOut;
                   context.go('/login');
                 },
                 child: Padding(

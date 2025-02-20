@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart';
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:devilfruitdex/presentation/screen/splash/cubit/splash_screen_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart';
 import 'splash_screen_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<AuthenticationRepository>(),
+  MockSpec<UserRepository>(),
   MockSpec<User>(),
 ])
 void main() {

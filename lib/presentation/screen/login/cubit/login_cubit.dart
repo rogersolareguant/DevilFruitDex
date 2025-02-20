@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart';
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -7,9 +7,9 @@ part 'login_state.dart';
 part 'login_cubit.freezed.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final AuthenticationRepository _repository;
+  final UserRepository _repository;
 
-  LoginCubit({required AuthenticationRepository repository})
+  LoginCubit({required UserRepository repository})
       : _repository = repository,
         super(const LoginState());
 

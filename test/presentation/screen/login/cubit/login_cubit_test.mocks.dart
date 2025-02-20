@@ -5,8 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart'
-    as _i3;
+import 'package:devilfruitdex/domain/repository/user_repository.dart' as _i3;
 import 'package:firebase_auth/firebase_auth.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -34,11 +33,10 @@ class _FakeUserCredential_0 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [AuthenticationRepository].
+/// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthenticationRepository extends _i1.Mock
-    implements _i3.AuthenticationRepository {
+class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   @override
   _i4.Future<_i2.UserCredential> login(
     String? email,
@@ -120,6 +118,26 @@ class MockAuthenticationRepository extends _i1.Mock
         returnValue: _i4.Future<_i2.User?>.value(),
         returnValueForMissingStub: _i4.Future<_i2.User?>.value(),
       ) as _i4.Future<_i2.User?>);
+
+  @override
+  _i4.Future<String?> getEmail() => (super.noSuchMethod(
+        Invocation.method(
+          #getEmail,
+          [],
+        ),
+        returnValue: _i4.Future<String?>.value(),
+        returnValueForMissingStub: _i4.Future<String?>.value(),
+      ) as _i4.Future<String?>);
+
+  @override
+  _i4.Future<void> signOut() => (super.noSuchMethod(
+        Invocation.method(
+          #signOut,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [UserCredential].

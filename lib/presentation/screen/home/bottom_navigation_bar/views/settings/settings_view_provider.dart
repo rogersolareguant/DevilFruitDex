@@ -1,3 +1,4 @@
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/cubit/settings_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/settings_view.dart';
 import 'package:devilfruitdex/presentation/screen/widgets/screen_error_state.dart';
@@ -11,7 +12,11 @@ class SettingsScreenProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SettingsCubit(),
+      create: (context) {
+        final cubit = SettingsCubit(repository: context.read<UserRepository>());
+        cubit.getEmail(); // Fetch email when the screen is initialized
+        return cubit;
+      },
       child: const SettingsScreen(),
     );
   }
