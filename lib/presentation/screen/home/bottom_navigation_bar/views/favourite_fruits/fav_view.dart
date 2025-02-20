@@ -6,7 +6,6 @@ import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/wid
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/widgets/app_bar_widgets/home_title.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/widgets/image_widgets/image_fruit.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/widgets/image_widgets/no_image_fruit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +44,7 @@ class FavView extends StatelessWidget {
                   child: FavHomeSortButton()),
               InkWell(
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
+                  context.read<DevilFruitCubit>().signOut;
                   context.go('/login');
                 },
                 child: Padding(

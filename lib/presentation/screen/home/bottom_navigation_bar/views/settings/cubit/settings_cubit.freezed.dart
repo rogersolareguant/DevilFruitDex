@@ -19,6 +19,8 @@ mixin _$SettingsState {
   SettingsStatus get status => throw _privateConstructorUsedError;
   bool get darkMode => throw _privateConstructorUsedError;
   Locale get language => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,12 @@ abstract class $SettingsStateCopyWith<$Res> {
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res, SettingsState>;
   @useResult
-  $Res call({SettingsStatus status, bool darkMode, Locale language});
+  $Res call(
+      {SettingsStatus status,
+      bool darkMode,
+      Locale language,
+      String name,
+      String email});
 }
 
 /// @nodoc
@@ -54,6 +61,8 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? status = null,
     Object? darkMode = null,
     Object? language = null,
+    Object? name = null,
+    Object? email = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -68,6 +77,14 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Locale,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -80,7 +97,12 @@ abstract class _$$SettingStateImplCopyWith<$Res>
       __$$SettingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SettingsStatus status, bool darkMode, Locale language});
+  $Res call(
+      {SettingsStatus status,
+      bool darkMode,
+      Locale language,
+      String name,
+      String email});
 }
 
 /// @nodoc
@@ -99,6 +121,8 @@ class __$$SettingStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? darkMode = null,
     Object? language = null,
+    Object? name = null,
+    Object? email = null,
   }) {
     return _then(_$SettingStateImpl(
       status: null == status
@@ -113,6 +137,14 @@ class __$$SettingStateImplCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Locale,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -123,7 +155,9 @@ class _$SettingStateImpl implements _SettingState {
   const _$SettingStateImpl(
       {this.status = SettingsStatus.loading,
       this.darkMode = false,
-      this.language = const Locale('en')});
+      this.language = const Locale('en'),
+      this.name = '',
+      this.email = ''});
 
   @override
   @JsonKey()
@@ -134,10 +168,16 @@ class _$SettingStateImpl implements _SettingState {
   @override
   @JsonKey()
   final Locale language;
+  @override
+  @JsonKey()
+  final String name;
+  @override
+  @JsonKey()
+  final String email;
 
   @override
   String toString() {
-    return 'SettingsState(status: $status, darkMode: $darkMode, language: $language)';
+    return 'SettingsState(status: $status, darkMode: $darkMode, language: $language, name: $name, email: $email)';
   }
 
   @override
@@ -149,11 +189,14 @@ class _$SettingStateImpl implements _SettingState {
             (identical(other.darkMode, darkMode) ||
                 other.darkMode == darkMode) &&
             (identical(other.language, language) ||
-                other.language == language));
+                other.language == language) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, darkMode, language);
+  int get hashCode =>
+      Object.hash(runtimeType, status, darkMode, language, name, email);
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -168,7 +211,9 @@ abstract class _SettingState implements SettingsState {
   const factory _SettingState(
       {final SettingsStatus status,
       final bool darkMode,
-      final Locale language}) = _$SettingStateImpl;
+      final Locale language,
+      final String name,
+      final String email}) = _$SettingStateImpl;
 
   @override
   SettingsStatus get status;
@@ -176,6 +221,10 @@ abstract class _SettingState implements SettingsState {
   bool get darkMode;
   @override
   Locale get language;
+  @override
+  String get name;
+  @override
+  String get email;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.

@@ -12,4 +12,10 @@ extension StringX on String {
     // If "no Mi" is found, return the match; otherwise, return the original string
     return match != null ? match.group(1) ?? this : this;
   }
+
+    String userName() {
+    if (isEmpty) return "";
+
+    return contains('@') ? split('@').first : this;
+  }
 }

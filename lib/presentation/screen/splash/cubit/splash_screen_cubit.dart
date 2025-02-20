@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart';
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'splash_screen_state.dart';
 part 'splash_screen_cubit.freezed.dart';
 
 class SplashScreenCubit extends Cubit<SplashScreenState> {
-  final AuthenticationRepository _repository;
+  final UserRepository _repository;
 
-  SplashScreenCubit({required AuthenticationRepository repository})
+  SplashScreenCubit({required UserRepository repository})
       : _repository = repository,
         super(const SplashScreenState());
 

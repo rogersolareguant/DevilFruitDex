@@ -1,10 +1,13 @@
-import 'package:devilfruitdex/domain/repository/authentication_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthenticationRepositoryImpl extends AuthenticationRepository {
+class UserRepositoryImpl extends UserRepository {
   final FirebaseAuth _firebaseAuth;
 
-  AuthenticationRepositoryImpl({required FirebaseAuth firebaseAuth})
+  UserRepositoryImpl(
+      {required FirebaseAuth firebaseAuth,
+      required FirebaseFirestore firebasestore})
       : _firebaseAuth = firebaseAuth;
 
   @override
@@ -46,4 +49,18 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
     return _firebaseAuth.currentUser;
   }
 
+  @override
+  Future<String?> getEmail() async {
+    try {
+      String? email = FirebaseAuth.instance.currentUser?.email;
+      return email;
+    } catch (e) {
+      throw Exception('Email not found');
+    }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+  }
 }
