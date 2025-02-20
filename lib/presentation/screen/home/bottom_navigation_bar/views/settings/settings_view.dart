@@ -1,5 +1,6 @@
 import 'package:devilfruitdex/presentation/extensions/extensions.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/cubit/settings_cubit.dart';
+import 'package:devilfruitdex/presentation/screen/home/detail/widgets/app_bar_widgets/title_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -76,29 +77,18 @@ class UserProfileSection extends StatelessWidget {
                           image: AssetImage(
                               '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/user-profile.webp'),
                           fit: BoxFit.contain))),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                state.name.isNotEmpty
-                    ? SizedBox(
-                        width: 150,
-                        child: TextField(
-                          autofocus: true,
-                          onChanged: (newName) {
-                            context.read<SettingsCubit>().updateName(newName);
-                          },
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 5),
-                          ),
-                        ),
-                      )
-                    : Text(
-                        state.email.userName(),
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                SizedBox(width: 5),
-                Icon(Icons.edit),
-              ]),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center, 
+                children: [
+                  Text(
+                    state.email.userName(),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  SizedBox(width: 5),
+                  Icon(Icons.edit),
+                
+                ]
+              ),
               Text(
                 state.email,
                 style: Theme.of(context).textTheme.bodyMedium,
