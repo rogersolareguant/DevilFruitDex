@@ -12,6 +12,10 @@
     "spanish": "Spanish",
     "darkMode": "Dark Mode",
     "signOut": "Sign Out",
+    "editName": "Edit your name",
+    "enterYourName": "Enter your name",
+    "cancel": "Cancel",
+    "save": "Save",
 
 
     "eat": "Eat?",
@@ -19,8 +23,6 @@
     "getPower": "! Now, you wield the incredible power of the ",
     "weakWater": ", but be careful, water has become your greatest weakness, taking away from you the ability of swim.",
     "gallery": "IMAGE GALLERY",
-
-
 
 
     "about": "About",

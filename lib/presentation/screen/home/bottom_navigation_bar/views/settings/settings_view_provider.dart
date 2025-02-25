@@ -14,7 +14,7 @@ class SettingsScreenProvider extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         final cubit = SettingsCubit(repository: context.read<UserRepository>());
-        cubit.getEmail(); // Fetch email when the screen is initialized
+        cubit.getEmail();
         return cubit;
       },
       child: const SettingsScreen(),

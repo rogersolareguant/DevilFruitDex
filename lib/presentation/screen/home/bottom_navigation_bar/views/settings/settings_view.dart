@@ -10,6 +10,8 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<SettingsCubit>().loadUserName();
+
     return BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
       return Scaffold(
         body: Padding(
@@ -73,21 +75,59 @@ class UserProfileSection extends StatelessWidget {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: AssetImage(
-                              '/Users/rogersolareguant/Desktop/Flutter/devilfruitdex/assets/images/user-profile.webp'),
+                          image: AssetImage('assets/images/user-profile.webp'),
                           fit: BoxFit.contain))),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center, 
-                children: [
-                  Text(
-                    state.email.userName(),
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  SizedBox(width: 5),
-                  Icon(Icons.edit),
-                
-                ]
-              ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text(
+                  state.name.isEmpty ? state.email.userName() : state.name,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                IconButton(
+                    icon: const Icon(Icons.edit),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return BlocProvider.value(
+                            value: context.read<SettingsCubit>(),
+                            child: BlocBuilder<SettingsCubit, SettingsState>(
+                              builder: (context, state) {
+                                return AlertDialog(
+                                  title: Text(
+                                      AppLocalizations.of(context)!.editName),
+                                  content: TextField(
+                                    maxLength: 7,
+                                    onChanged: (value) {
+                                      if (value.length <= 7) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateName(value);
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        color: Theme.of(context).focusColor),
+                                    decoration: InputDecoration(
+                                      counterText: "",
+                                      hintText: AppLocalizations.of(context)!
+                                          .enterYourName,
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.save),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    })
+              ]),
               Text(
                 state.email,
                 style: Theme.of(context).textTheme.bodyMedium,

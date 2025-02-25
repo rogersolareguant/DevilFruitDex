@@ -10,8 +10,5 @@ class SettingsState with _$SettingsState {
     @Default(Locale('en')) Locale language,
     @Default('') String name,
     @Default('') String email,
-
   }) = _SettingState;
 }
-
-

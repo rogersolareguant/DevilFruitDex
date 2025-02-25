@@ -3,6 +3,7 @@ import 'package:devilfruitdex/domain/repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_state.dart';
 part 'settings_cubit.freezed.dart';
@@ -26,13 +27,21 @@ class SettingsCubit extends Cubit<SettingsState> {
     ));
   }
 
-  void updateName(String name) {
-    emit(state.copyWith(
-      name: name,
-    ));
+  Future<void> loadUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedName = prefs.getString('userName') ?? '';
+
+    emit(state.copyWith(name: savedName));
   }
 
-  Future<void> getEmail() async{
+  Future<void> updateName(String name) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userName', name);
+
+    emit(state.copyWith(name: name));
+  }
+
+  Future<void> getEmail() async {
     try {
       String? email = await _repository.getEmail();
       if (email != null) {
