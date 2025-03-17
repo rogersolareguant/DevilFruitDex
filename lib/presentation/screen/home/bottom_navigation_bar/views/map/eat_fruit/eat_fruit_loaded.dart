@@ -189,18 +189,20 @@ class DevilFruitGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> images = _getImagesByType(type);
 
-    return CarouselSlider(
-        options: CarouselOptions(
-          height: 250,
-          autoPlay: true,
-          enlargeCenterPage: true,
-          viewportFraction: 0.8,
-        ),
-        items: images
-            .map((url) => ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(url, fit: BoxFit.cover),
-                ))
-            .toList());
+    return CarouselSlider.builder(
+      options: CarouselOptions(
+        height: 250,
+        autoPlay: true,
+        enlargeCenterPage: true,
+        viewportFraction: 0.8,
+      ),
+      itemCount: images.length,
+      itemBuilder: (context, index, realIndex) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(images[index], fit: BoxFit.cover),
+        );
+      },
+    );
   }
 }
