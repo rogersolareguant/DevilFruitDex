@@ -130,7 +130,7 @@ class _MapViewState extends State<MapView> with SingleTickerProviderStateMixin {
                                           fruit.filename.contains('.jpg')
                                       ? Image.network(fruit.filename)
                                       : Image.asset(
-                                          '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png'),
+                                          'assets/images/incognit-fruit.png'),
                                 ));
                           }),
                         ]),

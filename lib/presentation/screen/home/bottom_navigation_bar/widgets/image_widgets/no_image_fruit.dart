@@ -22,7 +22,7 @@ class NoImageFruit extends StatelessWidget {
           ImageIdText(id: state[index].id),
           Expanded(
             child: Image.asset(
-                '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png'),
+                'assets/images/incognit-fruit.png'),
           ),
           ImageNameText(romanName: state[index].romanName),
         ],

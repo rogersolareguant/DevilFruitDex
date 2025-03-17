@@ -18,7 +18,7 @@ class ImagePositioned extends StatelessWidget {
         child: Container(
           alignment: Alignment.topCenter,
           child: Image.asset(
-            '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png',
+            'assets/images/incognit-fruit.png',
             scale: 2,
             height: 180,
             width: 180,
@@ -58,7 +58,7 @@ class ImagePositionedEat extends StatelessWidget {
       return Container(
           alignment: Alignment.topCenter,
           child: Image.asset(
-            '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/incognit-fruit.png',
+            'assets/images/incognit-fruit.png',
             scale: 2,
             height: 180,
             width: 180,

@@ -8,7 +8,7 @@ class HomeLuffyHat extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Image.asset(
-          '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/farmer-hat.png'),
+          'assets/images/farmer-hat.png'),
     );
   }
 }

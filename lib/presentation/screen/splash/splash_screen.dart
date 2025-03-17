@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen>
                       height: 200,
                       width: 200,
                       child: Image.asset(
-                        '/Users/rogersolareguant/Desktop/Flutter/devil_fruitdex/assets/images/farmer-hat.png',
+                        'assets/images/farmer-hat.png',
                       ),
                     ),
                   );
