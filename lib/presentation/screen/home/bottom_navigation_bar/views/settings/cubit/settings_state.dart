@@ -10,5 +10,8 @@ class SettingsState with _$SettingsState {
     @Default(Locale('en')) Locale language,
     @Default('') String name,
     @Default('') String email,
+    @Default('') String currentPassword,
+    @Default('') String newPassword,
+    @Default('') String repeatNewPassword,
   }) = _SettingState;
 }

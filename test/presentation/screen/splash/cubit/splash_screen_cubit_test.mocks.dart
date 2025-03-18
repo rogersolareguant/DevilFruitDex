@@ -182,6 +182,27 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
       ) as _i4.Future<String?>);
 
   @override
+  _i4.Future<void> reauthenticateWithPassword(String? password) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #reauthenticateWithPassword,
+          [password],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> updatePassword(String? newPassword) => (super.noSuchMethod(
+        Invocation.method(
+          #updatePassword,
+          [newPassword],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
   _i4.Future<void> signOut() => (super.noSuchMethod(
         Invocation.method(
           #signOut,
