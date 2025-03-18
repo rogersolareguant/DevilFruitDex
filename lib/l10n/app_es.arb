@@ -16,6 +16,13 @@
     "enterYourName": "Ingresa tu nombre",
     "cancel": "Cancelar",
     "save": "Guardar",
+    "updatePassword": "Actualizar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "repeatPassword": "Repetir nueva contraseña",
+    "notMatch": "Las nuevas contraseñas no coinciden",
+    "changedSucces": "Contraseña cambiada con éxito",
+    "incorrectCurrentPassword": "Contraseña actual incorrecta",
 
 
     "eat": "Comer?",

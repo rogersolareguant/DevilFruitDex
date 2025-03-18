@@ -16,6 +16,13 @@
     "enterYourName": "Enter your name",
     "cancel": "Cancel",
     "save": "Save",
+    "updatePassword": "Update password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "repeatPassword": "Repeat new password",
+    "notMatch": "New passwords do not match",
+    "changedSucces": "Password changed successfully",
+    "incorrectCurrentPassword": "Incorrect current password",
 
 
     "eat": "Eat?",

@@ -1,5 +1,6 @@
 import 'package:devilfruitdex/presentation/extensions/extensions.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/cubit/settings_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -77,61 +78,188 @@ class UserProfileSection extends StatelessWidget {
                       image: DecorationImage(
                           image: AssetImage('assets/images/user-profile.webp'),
                           fit: BoxFit.contain))),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text(
+                    state.name.isEmpty ? state.email.userName() : state.name,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                  IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return BlocProvider.value(
+                              value: context.read<SettingsCubit>(),
+                              child: BlocBuilder<SettingsCubit, SettingsState>(
+                                builder: (context, state) {
+                                  return AlertDialog(
+                                    title: Text(
+                                        AppLocalizations.of(context)!.editName),
+                                    content: TextField(
+                                      maxLength: 7,
+                                      onChanged: (value) {
+                                        if (value.length <= 7) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateName(value);
+                                        }
+                                      },
+                                      style: TextStyle(
+                                          color: Theme.of(context).focusColor),
+                                      decoration: InputDecoration(
+                                        counterText: "",
+                                        hintText: AppLocalizations.of(context)!
+                                            .enterYourName,
+                                        border: OutlineInputBorder(),
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.save),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      })
+                ]),
+              ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(
-                  state.name.isEmpty ? state.email.userName() : state.name,
-                  style: Theme.of(context).textTheme.displayLarge,
+                  state.email,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 IconButton(
-                    icon: const Icon(Icons.edit),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return BlocProvider.value(
-                            value: context.read<SettingsCubit>(),
-                            child: BlocBuilder<SettingsCubit, SettingsState>(
-                              builder: (context, state) {
-                                return AlertDialog(
-                                  title: Text(
-                                      AppLocalizations.of(context)!.editName),
-                                  content: TextField(
-                                    maxLength: 7,
-                                    onChanged: (value) {
-                                      if (value.length <= 7) {
-                                        context
-                                            .read<SettingsCubit>()
-                                            .updateName(value);
+                  icon: const Icon(Icons.change_circle_outlined),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return BlocProvider.value(
+                          value: context.read<SettingsCubit>(),
+                          child: BlocBuilder<SettingsCubit, SettingsState>(
+                            builder: (context, state) {
+                              return AlertDialog(
+                                title: Text(AppLocalizations.of(context)!.updatePassword),
+                                content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      TextField(
+                                        obscureText: true,
+                                        onChanged: (value) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateCurrentPassword(value);
+                                        },
+                                        style: TextStyle(
+                                            color:
+                                                Theme.of(context).focusColor),
+                                        decoration: InputDecoration(
+                                          hintText: AppLocalizations.of(context)!.currentPassword,
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      TextField(
+                                        obscureText: true,
+                                        onChanged: (value) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateNewPassword(value);
+                                        },
+                                        style: TextStyle(
+                                            color:
+                                                Theme.of(context).focusColor),
+                                        decoration: InputDecoration(
+                                          hintText: AppLocalizations.of(context)!.newPassword,
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      TextField(
+                                        obscureText: true,
+                                        onChanged: (value) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateRepeatNewPassword(value);
+                                        },
+                                        style: TextStyle(
+                                            color:
+                                                Theme.of(context).focusColor),
+                                        decoration: InputDecoration(
+                                          hintText: AppLocalizations.of(context)!.repeatPassword,
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ]),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () async {
+                                      final settingsCubit =
+                                          context.read<SettingsCubit>();
+                                      final state = settingsCubit.state;
+
+                                      if (state.newPassword !=
+                                          state.repeatNewPassword) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                AppLocalizations.of(context)!.notMatch),
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        );
+                                        return;
+                                      }
+
+                                      final isPasswordUpdated =
+                                          await settingsCubit.updatePassword();
+
+                                      if (!context.mounted) return;
+
+                                      if (isPasswordUpdated) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                AppLocalizations.of(context)!.changedSucces),
+                                            backgroundColor: Colors.green,
+                                          ),
+                                        );
+                                        Navigator.pop(context);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                                AppLocalizations.of(context)!.incorrectCurrentPassword),
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        );
                                       }
                                     },
-                                    style: TextStyle(
-                                        color: Theme.of(context).focusColor),
-                                    decoration: InputDecoration(
-                                      counterText: "",
-                                      hintText: AppLocalizations.of(context)!
-                                          .enterYourName,
-                                      border: OutlineInputBorder(),
-                                    ),
+                                    child: Text(
+                                        AppLocalizations.of(context)!.save),
                                   ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text(
-                                          AppLocalizations.of(context)!.save),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          );
-                        },
-                      );
-                    })
+                                ],
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                )
               ]),
-              Text(
-                state.email,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
             ],
           ),
         );

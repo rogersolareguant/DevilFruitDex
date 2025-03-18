@@ -61,6 +61,35 @@ class SettingsCubit extends Cubit<SettingsState> {
     }
   }
 
+  void updateCurrentPassword(String password) {
+    emit(state.copyWith(currentPassword: password));
+  }
+
+  void updateNewPassword(String password) {
+    emit(state.copyWith(newPassword: password));
+  }
+
+  void updateRepeatNewPassword(String password) {
+    emit(state.copyWith(repeatNewPassword: password));
+  }
+
+  Future<bool> updatePassword() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: user!.email!,
+        password: state.currentPassword,
+      );
+
+      await user.reauthenticateWithCredential(credential);
+
+      await user.updatePassword(state.newPassword);
+      return true; 
+    } catch (e) {
+      return false; 
+    }
+  }
+
   void signOut() {
     FirebaseAuth.instance.signOut();
     emit(state.copyWith(
