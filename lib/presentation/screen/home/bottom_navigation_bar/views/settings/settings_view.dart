@@ -148,7 +148,8 @@ class UserProfileSection extends StatelessWidget {
                           child: BlocBuilder<SettingsCubit, SettingsState>(
                             builder: (context, state) {
                               return AlertDialog(
-                                title: Text(AppLocalizations.of(context)!.updatePassword),
+                                title: Text(AppLocalizations.of(context)!
+                                    .updatePassword),
                                 content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -163,7 +164,9 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText: AppLocalizations.of(context)!.currentPassword,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .currentPassword,
                                           border: OutlineInputBorder(),
                                         ),
                                       ),
@@ -179,7 +182,9 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText: AppLocalizations.of(context)!.newPassword,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .newPassword,
                                           border: OutlineInputBorder(),
                                         ),
                                       ),
@@ -195,7 +200,9 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText: AppLocalizations.of(context)!.repeatPassword,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .repeatPassword,
                                           border: OutlineInputBorder(),
                                         ),
                                       ),
@@ -213,7 +220,8 @@ class UserProfileSection extends StatelessWidget {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                                AppLocalizations.of(context)!.notMatch),
+                                                AppLocalizations.of(context)!
+                                                    .notMatch),
                                             backgroundColor: Colors.red,
                                           ),
                                         );
@@ -230,7 +238,8 @@ class UserProfileSection extends StatelessWidget {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                                AppLocalizations.of(context)!.changedSucces),
+                                                AppLocalizations.of(context)!
+                                                    .changedSucces),
                                             backgroundColor: Colors.green,
                                           ),
                                         );
@@ -240,7 +249,8 @@ class UserProfileSection extends StatelessWidget {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                                AppLocalizations.of(context)!.incorrectCurrentPassword),
+                                                AppLocalizations.of(context)!
+                                                    .incorrectCurrentPassword),
                                             backgroundColor: Colors.red,
                                           ),
                                         );
