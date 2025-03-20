@@ -61,37 +61,27 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<void> reauthenticateWithPassword(String currentPassword) async {
-    User? user = _firebaseAuth.currentUser;
-
-    if (user == null) {
-      throw Exception('No user is currently signed in.');
-    }
-
     try {
-      String email = user.email!;
+      User? user = _firebaseAuth.currentUser;
+      String email = user!.email!;
 
       AuthCredential credential =
           EmailAuthProvider.credential(email: email, password: currentPassword);
 
       await user.reauthenticateWithCredential(credential);
-      
     } catch (e) {
-      throw Exception('Failed to reauthenticate: ${e.toString()}');
+      throw Exception('Failed to reauthenticate');
     }
   }
 
   @override
-  Future<void> updatePassword(String newPassword) async {
-    User? user = _firebaseAuth.currentUser;
-
-    if (user == null) {
-      throw Exception('No user is currently signed in.');
-    }
-
+  Future<void> updateUserPassword(String newPassword) async {
     try {
-      await user.updatePassword(newPassword);
+      User? user = _firebaseAuth.currentUser;
+
+      await user?.updatePassword(newPassword);
     } catch (e) {
-      throw Exception('Failed to update password: ${e.toString()}');
+      throw Exception('Failed to update password');
     }
   }
 

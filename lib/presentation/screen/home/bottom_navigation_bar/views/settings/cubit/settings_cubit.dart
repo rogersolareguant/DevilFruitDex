@@ -77,7 +77,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<bool> updatePasswordOk() async {
     try {
       await _repository.reauthenticateWithPassword(state.currentPassword);
-      await _repository.updatePassword(state.newPassword);
+      await _repository.updateUserPassword(state.newPassword);
 
       emit(state.copyWith(status: SettingsStatus.loaded));
 

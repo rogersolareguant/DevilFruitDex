@@ -11,7 +11,7 @@ abstract class UserRepository {
 
   Future<void> reauthenticateWithPassword(String currentPassword);
 
-  Future<void> updatePassword(String newPassword);
+  Future<void> updateUserPassword(String newPassword);
 
   Future<void> signOut();
 }
