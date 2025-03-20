@@ -10,8 +10,6 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SettingsCubit>().loadUserName();
-
     return BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
       return Scaffold(
         body: Padding(
@@ -58,6 +56,7 @@ class UserProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<SettingsCubit>().getEmail();
+    context.read<SettingsCubit>().loadUserName();
 
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
@@ -229,7 +228,8 @@ class UserProfileSection extends StatelessWidget {
                                       }
 
                                       final isPasswordUpdated =
-                                          await settingsCubit.updatePasswordOk();
+                                          await settingsCubit
+                                              .updatePasswordOk();
 
                                       if (!context.mounted) return;
 
