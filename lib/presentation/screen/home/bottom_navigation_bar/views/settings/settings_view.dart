@@ -229,7 +229,7 @@ class UserProfileSection extends StatelessWidget {
                                       }
 
                                       final isPasswordUpdated =
-                                          await settingsCubit.updatePassword();
+                                          await settingsCubit.updatePasswordOk();
 
                                       if (!context.mounted) return;
 

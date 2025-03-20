@@ -9,7 +9,7 @@ abstract class UserRepository {
 
   Future<String?> getEmail();
 
-  Future<void> reauthenticateWithPassword(String password);
+  Future<void> reauthenticateWithPassword(String currentPassword);
 
   Future<void> updatePassword(String newPassword);
 

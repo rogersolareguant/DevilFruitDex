@@ -59,6 +59,7 @@ class UserRepositoryImpl extends UserRepository {
     }
   }
 
+  @override
   Future<void> reauthenticateWithPassword(String currentPassword) async {
     User? user = _firebaseAuth.currentUser;
 
@@ -73,11 +74,13 @@ class UserRepositoryImpl extends UserRepository {
           EmailAuthProvider.credential(email: email, password: currentPassword);
 
       await user.reauthenticateWithCredential(credential);
+      
     } catch (e) {
       throw Exception('Failed to reauthenticate: ${e.toString()}');
     }
   }
 
+  @override
   Future<void> updatePassword(String newPassword) async {
     User? user = _firebaseAuth.currentUser;
 

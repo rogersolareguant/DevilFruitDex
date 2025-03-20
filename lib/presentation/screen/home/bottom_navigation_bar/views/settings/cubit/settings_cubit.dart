@@ -44,6 +44,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> getEmail() async {
     try {
       String? email = await _repository.getEmail();
+
       if (email != null) {
         emit(state.copyWith(
           status: SettingsStatus.loaded,
@@ -73,20 +74,17 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(state.copyWith(repeatNewPassword: password));
   }
 
-  Future<bool> updatePassword() async {
+  Future<bool> updatePasswordOk() async {
     try {
-      User? user = FirebaseAuth.instance.currentUser;
-      AuthCredential credential = EmailAuthProvider.credential(
-        email: user!.email!,
-        password: state.currentPassword,
-      );
+      await _repository.reauthenticateWithPassword(state.currentPassword);
+      await _repository.updatePassword(state.newPassword);
 
-      await user.reauthenticateWithCredential(credential);
+      emit(state.copyWith(status: SettingsStatus.loaded));
 
-      await user.updatePassword(state.newPassword);
-      return true; 
+      return true;
     } catch (e) {
-      return false; 
+      emit(state.copyWith(status: SettingsStatus.error));
+      return false;
     }
   }
 
