@@ -71,20 +71,25 @@ class MainApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => SettingsCubit(repository: context.read<UserRepository>()),
+            create: (context) {
+              if (currentUser == null) {
+                return SettingsCubit(repository: context.read<UserRepository>(), uid: 'Guest');
+              }
+              return SettingsCubit(repository: context.read<UserRepository>(), uid: currentUser!.uid);
+            },
           ),
           BlocProvider(
             create: (context) =>
                 SplashScreenCubit(repository: context.read<UserRepository>()),
           ),
-          if (currentUser == null)
-            BlocProvider(
-              create: (context) => DevilFruitCubit(
-                  repository: context.read<DevilFruitRepository>(),
-                  favRepository: context.read<FavouritesRepository>(),
-                  locationRepository: context.read<LocationRepository>(),
-                  uid: currentUser!.uid),
-            )
+          BlocProvider(
+            create: (context) => DevilFruitCubit(
+              repository: context.read<DevilFruitRepository>(),
+              favRepository: context.read<FavouritesRepository>(),
+              locationRepository: context.read<LocationRepository>(),
+              uid: currentUser?.uid ?? '',
+            ),
+          ),
         ],
         child: BlocBuilder<SettingsCubit, SettingsState>(
           builder: (context, state) {

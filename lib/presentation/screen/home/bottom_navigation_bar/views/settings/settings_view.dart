@@ -55,9 +55,7 @@ class UserProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SettingsCubit>().getEmail();
-    context.read<SettingsCubit>().loadUserName();
-
+  
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
         return Container(
@@ -402,7 +400,7 @@ class SignOutButton extends StatelessWidget {
           backgroundColor:
               WidgetStateProperty.all(Theme.of(context).cardColor)),
       onPressed: () {
-        context.read<SettingsCubit>().signOut;
+        context.read<SettingsCubit>().signOut();
         context.go('/login');
       },
       child: Text(

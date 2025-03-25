@@ -60,6 +60,28 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
+  Stream<String> getUserName(String uid) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .snapshots()
+        .map((snapshot) {
+      final data = snapshot.data();
+      return data != null && data.containsKey('userName')
+          ? data['userName'] as String
+          : '';
+    });
+  }
+
+  @override
+  Future<void> setUserName(String uid, String userName) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .set({'userName': userName}, SetOptions(merge: true));
+  }
+
+  @override
   Future<void> reauthenticateWithPassword(String currentPassword) async {
     try {
       User? user = _firebaseAuth.currentUser;

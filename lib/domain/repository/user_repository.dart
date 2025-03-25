@@ -9,6 +9,10 @@ abstract class UserRepository {
 
   Future<String?> getEmail();
 
+  Stream<String> getUserName(String uid);
+
+  Future<void> setUserName(String uid, String userName);
+
   Future<void> reauthenticateWithPassword(String currentPassword);
 
   Future<void> updateUserPassword(String newPassword);

@@ -43,7 +43,7 @@ class HomeView extends StatelessWidget {
                   child: HomeSortButton()),
               InkWell(
                 onTap: () {
-                  context.read<DevilFruitCubit>().signOut;
+                  context.read<DevilFruitCubit>().signOut();
                   context.go('/login');
                 },
                 child: Padding(

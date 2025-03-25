@@ -1,7 +1,7 @@
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/map/map_view.dart';
-import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/settings_view.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/favourite_fruits/fav_view.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/all_fruits/home_view.dart';
+import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/settings_view_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lazy_indexed_stack/flutter_lazy_indexed_stack.dart';
 
@@ -34,7 +34,7 @@ class _HomeBottomNavigationBarState extends State<HomeBottomNavigationBar> {
           const MapView(),
           const FavView(),
           const HomeView(),
-          const SettingsView(),
+          const SettingsScreenProvider(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
