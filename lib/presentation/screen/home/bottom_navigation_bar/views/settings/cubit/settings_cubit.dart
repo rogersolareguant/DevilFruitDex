@@ -82,6 +82,31 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(state.copyWith(repeatNewPassword: password));
   }
 
+  void updateCurrentPasswordError(String error) {
+    emit(state.copyWith(currentPasswordError: error));
+  }
+
+  void updateNewPasswordError(String error) {
+    emit(state.copyWith(newPasswordError: error));
+  }
+
+  void updateRepeatNewPasswordError(String error) {
+    emit(state.copyWith(repeatNewPasswordError: error));
+  }
+
+  Future<bool> checkCurrentPasswordOk() async {
+    try {
+      await _repository.reauthenticateWithPassword(state.currentPassword);
+
+      emit(state.copyWith(status: SettingsStatus.loaded));
+
+      return true;
+    } catch (e) {
+      emit(state.copyWith(status: SettingsStatus.error));
+      return false;
+    }
+  }
+
   Future<bool> updatePasswordOk() async {
     try {
       await _repository.reauthenticateWithPassword(state.currentPassword);

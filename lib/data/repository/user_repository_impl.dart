@@ -65,12 +65,7 @@ class UserRepositoryImpl extends UserRepository {
         .collection('users')
         .doc(uid)
         .snapshots()
-        .map((snapshot) {
-      final data = snapshot.data();
-      return data != null && data.containsKey('userName')
-          ? data['userName'] as String
-          : '';
-    });
+        .map((docSnapshot) => docSnapshot.data()?['name'] ?? '');
   }
 
   @override

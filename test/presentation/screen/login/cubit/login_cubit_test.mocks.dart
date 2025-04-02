@@ -130,20 +130,48 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
       ) as _i4.Future<String?>);
 
   @override
-  _i4.Future<void> reauthenticateWithPassword(String? password) =>
+  _i4.Stream<String> getUserName(String? uid) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserName,
+          [uid],
+        ),
+        returnValue: _i4.Stream<String>.empty(),
+        returnValueForMissingStub: _i4.Stream<String>.empty(),
+      ) as _i4.Stream<String>);
+
+  @override
+  _i4.Future<void> setUserName(
+    String? uid,
+    String? userName,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
-          #reauthenticateWithPassword,
-          [password],
+          #setUserName,
+          [
+            uid,
+            userName,
+          ],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> updatePassword(String? newPassword) => (super.noSuchMethod(
+  _i4.Future<void> reauthenticateWithPassword(String? currentPassword) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #updatePassword,
+          #reauthenticateWithPassword,
+          [currentPassword],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> updateUserPassword(String? newPassword) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateUserPassword,
           [newPassword],
         ),
         returnValue: _i4.Future<void>.value(),

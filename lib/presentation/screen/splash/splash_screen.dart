@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:devilfruitdex/presentation/screen/splash/cubit/splash_screen_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/widgets/screen_error_state.dart';
 import 'package:flutter/material.dart';
@@ -17,32 +18,43 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _spinController;
   late final AnimationController _fadeController;
+  final AudioPlayer _player = AudioPlayer();
+
 
   @override
   void initState() {
     super.initState();
 
     _spinController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
 
     _spinController.forward();
 
     _fadeController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
 
     _fadeController.forward();
 
+    _playSound();
+
     context.read<SplashScreenCubit>().userLoaded();
   }
+
+Future<void> _playSound() async {
+    await _player.setVolume(1.0);
+    await _player.play(AssetSource('sounds/intro.mp3'));
+}
+
 
   @override
   void dispose() {
     _spinController.dispose();
     _fadeController.dispose();
+    _player.dispose();
     super.dispose();
   }
 

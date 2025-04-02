@@ -13,6 +13,7 @@ import 'package:devilfruitdex/firebase_options.dart';
 import 'package:devilfruitdex/presentation/navigation/route.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/cubit/settings_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/home/cubit/devil_fruit_cubit.dart';
+import 'package:devilfruitdex/presentation/screen/login/cubit/login_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/splash/cubit/splash_screen_cubit.dart';
 import 'package:devilfruitdex/presentation/style/app_theme.dart';
 import 'package:dio/dio.dart';
@@ -55,11 +56,6 @@ class MainApp extends StatelessWidget {
         RepositoryProvider<DevilFruitRepository>(
           create: (context) => DevilFruitRepositoryImpl(dio: Dio()),
         ),
-        RepositoryProvider<UserRepository>(
-          create: (context) => UserRepositoryImpl(
-              firebaseAuth: FirebaseAuth.instance,
-              firebasestore: FirebaseFirestore.instance),
-        ),
         RepositoryProvider<FavouritesRepository>(
           create: (context) =>
               FavouritesRepositoryImpl(firebaseAuth: FirebaseAuth.instance),
@@ -67,28 +63,41 @@ class MainApp extends StatelessWidget {
         RepositoryProvider<LocationRepository>(
           create: (context) => LocationRepositoryImpl(),
         ),
+        RepositoryProvider<UserRepository>(
+          create: (context) => UserRepositoryImpl(
+              firebaseAuth: FirebaseAuth.instance,
+              firebasestore: FirebaseFirestore.instance),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) {
-              if (currentUser == null) {
-                return SettingsCubit(repository: context.read<UserRepository>(), uid: 'Guest');
-              }
-              return SettingsCubit(repository: context.read<UserRepository>(), uid: currentUser!.uid);
-            },
-          ),
-          BlocProvider(
             create: (context) =>
                 SplashScreenCubit(repository: context.read<UserRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => LoginCubit(
+              repository: context.read<UserRepository>(),
+            ),
           ),
           BlocProvider(
             create: (context) => DevilFruitCubit(
               repository: context.read<DevilFruitRepository>(),
               favRepository: context.read<FavouritesRepository>(),
               locationRepository: context.read<LocationRepository>(),
-              uid: currentUser?.uid ?? '',
+              uid: currentUser!.uid,
             ),
+          ),
+          BlocProvider(
+            create: (context) {
+              if (currentUser == null) {
+                return SettingsCubit(
+                    repository: context.read<UserRepository>(), uid: 'Guest');
+              }
+              return SettingsCubit(
+                  repository: context.read<UserRepository>(),
+                  uid: currentUser!.uid);
+            },
           ),
         ],
         child: BlocBuilder<SettingsCubit, SettingsState>(

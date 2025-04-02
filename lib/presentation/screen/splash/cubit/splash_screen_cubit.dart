@@ -16,7 +16,7 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
     emit(state.copyWith(status: SplashScreenStatus.loading));
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 4));
 
       final user = await _repository.userLoaded();
 

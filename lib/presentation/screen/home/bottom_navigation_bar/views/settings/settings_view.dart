@@ -55,9 +55,12 @@ class UserProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
+        bool visibleCurrentPassword = true;
+        bool visibleNewPassword = true;
+        bool visibleRepeatPassword = true;
+
         return Container(
           padding: const EdgeInsets.fromLTRB(70, 15, 70, 15),
           decoration: BoxDecoration(
@@ -90,38 +93,41 @@ class UserProfileSection extends StatelessWidget {
                           builder: (context) {
                             return BlocProvider.value(
                               value: context.read<SettingsCubit>(),
-                              child: BlocBuilder<SettingsCubit, SettingsState>(
-                                builder: (context, state) {
-                                  return AlertDialog(
-                                    title: Text(
-                                        AppLocalizations.of(context)!.editName),
-                                    content: TextField(
-                                      maxLength: 7,
-                                      onChanged: (value) {
-                                        if (value.length <= 7) {
-                                          context
-                                              .read<SettingsCubit>()
-                                              .updateName(value);
-                                        }
-                                      },
-                                      style: TextStyle(
-                                          color: Theme.of(context).focusColor),
-                                      decoration: InputDecoration(
-                                        counterText: "",
-                                        hintText: AppLocalizations.of(context)!
-                                            .enterYourName,
-                                        border: OutlineInputBorder(),
-                                      ),
+                              child: AlertDialog(
+                                title: Text(
+                                  AppLocalizations.of(context)!.editName,
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
+                                ),
+                                content: TextField(
+                                  maxLength: 7,
+                                  onChanged: (value) {
+                                    if (value.length <= 7) {
+                                      context
+                                          .read<SettingsCubit>()
+                                          .updateName(value);
+                                    }
+                                  },
+                                  style: TextStyle(
+                                      color: Theme.of(context).focusColor),
+                                  decoration: InputDecoration(
+                                    counterText: "",
+                                    hintText: AppLocalizations.of(context)!
+                                        .enterYourName,
+                                    hintStyle: TextStyle(
+                                        color: Theme.of(context).canvasColor,
+                                        fontSize: 15),
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      AppLocalizations.of(context)!.save,
                                     ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context),
-                                        child: Text(
-                                            AppLocalizations.of(context)!.save),
-                                      ),
-                                    ],
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
                             );
                           },
@@ -145,13 +151,16 @@ class UserProfileSection extends StatelessWidget {
                           child: BlocBuilder<SettingsCubit, SettingsState>(
                             builder: (context, state) {
                               return AlertDialog(
-                                title: Text(AppLocalizations.of(context)!
-                                    .updatePassword),
+                                title: Text(
+                                  AppLocalizations.of(context)!.updatePassword,
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
+                                ),
                                 content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       TextField(
-                                        obscureText: true,
+                                        obscureText: visibleCurrentPassword,
                                         onChanged: (value) {
                                           context
                                               .read<SettingsCubit>()
@@ -161,15 +170,34 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .currentPassword,
-                                          border: OutlineInputBorder(),
-                                        ),
+                                            hintText:
+                                                AppLocalizations.of(context)!
+                                                    .currentPassword,
+                                            hintStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .canvasColor,
+                                                fontSize: 15),
+                                            border: OutlineInputBorder(),
+                                            errorText: state
+                                                    .currentPasswordError
+                                                    .isNotEmpty
+                                                ? state.currentPasswordError
+                                                : null,
+                                            suffixIcon: IconButton(
+                                              onPressed: () {
+                                                visibleCurrentPassword =
+                                                    !visibleCurrentPassword;
+                                              },
+                                              icon: Icon(
+                                                visibleCurrentPassword
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                              ),
+                                            )),
                                       ),
                                       SizedBox(height: 10),
                                       TextField(
-                                        obscureText: true,
+                                        obscureText: visibleNewPassword,
                                         onChanged: (value) {
                                           context
                                               .read<SettingsCubit>()
@@ -179,15 +207,33 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .newPassword,
-                                          border: OutlineInputBorder(),
-                                        ),
+                                            hintText:
+                                                AppLocalizations.of(context)!
+                                                    .newPassword,
+                                            hintStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .canvasColor,
+                                                fontSize: 15),
+                                            border: OutlineInputBorder(),
+                                            errorText: state
+                                                    .newPasswordError.isNotEmpty
+                                                ? state.newPasswordError
+                                                : null,
+                                            suffixIcon: IconButton(
+                                              onPressed: () {
+                                                visibleNewPassword =
+                                                    !visibleNewPassword;
+                                              },
+                                              icon: Icon(
+                                                visibleNewPassword
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                              ),
+                                            )),
                                       ),
                                       SizedBox(height: 10),
                                       TextField(
-                                        obscureText: true,
+                                        obscureText: visibleRepeatPassword,
                                         onChanged: (value) {
                                           context
                                               .read<SettingsCubit>()
@@ -197,11 +243,30 @@ class UserProfileSection extends StatelessWidget {
                                             color:
                                                 Theme.of(context).focusColor),
                                         decoration: InputDecoration(
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .repeatPassword,
-                                          border: OutlineInputBorder(),
-                                        ),
+                                            hintText:
+                                                AppLocalizations.of(context)!
+                                                    .repeatPassword,
+                                            hintStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .canvasColor,
+                                                fontSize: 15),
+                                            border: OutlineInputBorder(),
+                                            errorText: state
+                                                    .repeatNewPasswordError
+                                                    .isNotEmpty
+                                                ? state.repeatNewPasswordError
+                                                : null,
+                                            suffixIcon: IconButton(
+                                              onPressed: () {
+                                                visibleRepeatPassword =
+                                                    !visibleRepeatPassword;
+                                              },
+                                              icon: Icon(
+                                                visibleRepeatPassword
+                                                    ? Icons.visibility_off
+                                                    : Icons.visibility,
+                                              ),
+                                            )),
                                       ),
                                     ]),
                                 actions: [
@@ -209,49 +274,85 @@ class UserProfileSection extends StatelessWidget {
                                     onPressed: () async {
                                       final settingsCubit =
                                           context.read<SettingsCubit>();
-                                      final state = settingsCubit.state;
 
-                                      if (state.newPassword !=
-                                          state.repeatNewPassword) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
+                                      if (state.currentPassword.isEmpty) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateCurrentPasswordError(
                                                 AppLocalizations.of(context)!
-                                                    .notMatch),
-                                            backgroundColor: Colors.red,
-                                          ),
-                                        );
-                                        return;
+                                                    .requiredField);
+                                      } else {
+                                        final isCurrentPasswordOk =
+                                            await settingsCubit
+                                                .checkCurrentPasswordOk();
+
+                                        if (!context.mounted) return;
+
+                                        if (!isCurrentPasswordOk) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateCurrentPasswordError(
+                                                  AppLocalizations.of(context)!
+                                                      .incorrectCurrentPassword);
+                                        } else {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateCurrentPasswordError('');
+                                        }
                                       }
 
-                                      final isPasswordUpdated =
-                                          await settingsCubit
-                                              .updatePasswordOk();
-
-                                      if (!context.mounted) return;
-
-                                      if (isPasswordUpdated) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
+                                      if (state.newPassword.isEmpty) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateNewPasswordError(
                                                 AppLocalizations.of(context)!
-                                                    .changedSucces),
-                                            backgroundColor: Colors.green,
-                                          ),
-                                        );
-                                        Navigator.pop(context);
+                                                    .requiredField);
+                                      } else if (state.newPassword.length < 6) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateNewPasswordError(
+                                                AppLocalizations.of(context)!
+                                                    .weakPassword);
+                                      }
+
+                                      if (state.repeatNewPassword.isEmpty) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateRepeatNewPasswordError(
+                                                AppLocalizations.of(context)!
+                                                    .requiredField);
+                                      } else if (state.repeatNewPassword !=
+                                          state.newPassword) {
+                                        context
+                                            .read<SettingsCubit>()
+                                            .updateRepeatNewPasswordError(
+                                                AppLocalizations.of(context)!
+                                                    .notMatch);
                                       } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                                AppLocalizations.of(context)!
-                                                    .incorrectCurrentPassword),
-                                            backgroundColor: Colors.red,
-                                          ),
-                                        );
+                                        final isPasswordUpdated =
+                                            await settingsCubit
+                                                .updatePasswordOk();
+
+                                        if (!context.mounted) return;
+
+                                        if (isPasswordUpdated) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .changedSucces),
+                                              backgroundColor: Colors.green,
+                                            ),
+                                          );
+                                          Navigator.pop(context);
+                                        } else {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateCurrentPasswordError(
+                                                  AppLocalizations.of(context)!
+                                                      .incorrectCurrentPassword);
+                                        }
                                       }
                                     },
                                     child: Text(
@@ -282,61 +383,63 @@ class LanguageSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Locale currentLanguage =
-        context.watch<SettingsCubit>().state.language;
-
-    return Container(
-      decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          border: Border.all(color: Theme.of(context).cardColor, width: 3),
-          borderRadius: BorderRadius.circular(10)),
-      height: 100,
-      width: 1000,
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
-            child: Icon(Icons.language),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).cardColor, width: 3),
+              borderRadius: BorderRadius.circular(10)),
+          height: 100,
+          width: 1000,
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
+                child: Icon(Icons.language),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
+                child: Text(
+                  AppLocalizations.of(context)!.language,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 20, 30, 20),
+                  child: DropdownButton(
+                      dropdownColor: Theme.of(context).dialogBackgroundColor,
+                      iconEnabledColor:
+                          Theme.of(context).scaffoldBackgroundColor,
+                      value: state.language,
+                      onChanged: (selectedLanguage) {
+                        if (selectedLanguage != null) {
+                          context
+                              .read<SettingsCubit>()
+                              .updateLanguage(selectedLanguage);
+                        }
+                      },
+                      items: [
+                        DropdownMenuItem(
+                            value: const Locale('en'),
+                            child: Text(
+                              AppLocalizations.of(context)!.english,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            )),
+                        DropdownMenuItem(
+                            value: const Locale('es'),
+                            child: Text(
+                              AppLocalizations.of(context)!.spanish,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ))
+                      ]),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
-            child: Text(
-              AppLocalizations.of(context)!.language,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(50, 20, 30, 20),
-              child: DropdownButton(
-                  dropdownColor: Theme.of(context).dialogBackgroundColor,
-                  iconEnabledColor: Theme.of(context).scaffoldBackgroundColor,
-                  value: currentLanguage,
-                  onChanged: (selectedLanguage) {
-                    if (selectedLanguage != null) {
-                      context
-                          .read<SettingsCubit>()
-                          .updateLanguage(selectedLanguage);
-                    }
-                  },
-                  items: [
-                    DropdownMenuItem(
-                        value: const Locale('en'),
-                        child: Text(
-                          AppLocalizations.of(context)!.english,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        )),
-                    DropdownMenuItem(
-                        value: const Locale('es'),
-                        child: Text(
-                          AppLocalizations.of(context)!.spanish,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ))
-                  ]),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -348,44 +451,47 @@ class AppThemeSetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = context.watch<SettingsCubit>().state.darkMode;
-
-    return Container(
-      decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          border: Border.all(color: Theme.of(context).cardColor, width: 3),
-          borderRadius: BorderRadius.circular(10)),
-      height: 100,
-      width: 1000,
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
-            child: Icon(Icons.dark_mode_outlined),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
-            child: Text(
-              AppLocalizations.of(context)!.darkMode,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Switch(
-                inactiveThumbColor: Theme.of(context).scaffoldBackgroundColor,
-                trackOutlineWidth: WidgetStateProperty.all(-1),
-                trackColor: WidgetStateProperty.all(Colors.white),
-                value: isDarkMode,
-                onChanged: (value) {
-                  context.read<SettingsCubit>().updateAppTheme(value);
-                },
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).cardColor, width: 3),
+              borderRadius: BorderRadius.circular(10)),
+          height: 100,
+          width: 1000,
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 5, 20),
+                child: Icon(Icons.dark_mode_outlined),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 20, 0, 20),
+                child: Text(
+                  AppLocalizations.of(context)!.darkMode,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Switch(
+                    inactiveThumbColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    trackOutlineWidth: WidgetStateProperty.all(-1),
+                    trackColor: WidgetStateProperty.all(Colors.white),
+                    value: state.darkMode,
+                    onChanged: (value) {
+                      context.read<SettingsCubit>().updateAppTheme(value);
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

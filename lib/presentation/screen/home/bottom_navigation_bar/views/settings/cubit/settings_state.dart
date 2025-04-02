@@ -13,5 +13,8 @@ class SettingsState with _$SettingsState {
     @Default('') String currentPassword,
     @Default('') String newPassword,
     @Default('') String repeatNewPassword,
+    @Default('') String currentPasswordError,
+    @Default('') String newPasswordError,
+    @Default('') String repeatNewPasswordError,
   }) = _SettingState;
 }
