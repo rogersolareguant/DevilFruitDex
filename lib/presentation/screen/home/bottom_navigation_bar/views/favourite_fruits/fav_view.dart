@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lottie/lottie.dart';
 
 class FavView extends StatelessWidget {
   final List<DevilFruit> favoriteDevilFruits;
-
 
   const FavView({
     super.key,
@@ -24,7 +24,8 @@ class FavView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<DevilFruitCubit, DevilFruitState>(
       builder: (context, state) {
-        final favoriteDevilFruits = state.filteredAndSortedFavourtieDevilFruitList;
+        final favoriteDevilFruits =
+            state.filteredAndSortedFavourtieDevilFruitList;
 
         return Scaffold(
           appBar: AppBar(
@@ -67,42 +68,51 @@ class FavView extends StatelessWidget {
                   ? Center(
                       child: Text(AppLocalizations.of(context)!.noFav,
                           style: Theme.of(context).textTheme.bodyMedium))
-                  : GridView.builder(
-                      itemCount: favoriteDevilFruits.length,
-                      itemBuilder: (context, index) {
-                        if (!(favoriteDevilFruits[index]
-                                .filename
-                                .contains('.png') ||
-                            favoriteDevilFruits[index]
-                                .filename
-                                .contains('.jpg'))) {
-                          return InkWell(
-                            onTap: () {
-                              context.go(
-                                  '/home/detail/${favoriteDevilFruits[index].id}');
-                            },
-                            child: NoImageFruit(
-                                state: favoriteDevilFruits, index: index),
-                          );
-                        } else {
-                          return InkWell(
-                            onTap: () {
-                              context.go(
-                                  '/home/detail/${favoriteDevilFruits[index].id}');
-                            },
-                            child: ImageFruit(
-                                state: favoriteDevilFruits, index: index),
-                          );
-                        }
-                      },
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 15,
+                  : Stack(children: [
+                    Positioned.fill(
+                child: Lottie.asset(
+                  'assets/animations/fire.json', 
+                  fit: BoxFit.cover,
+                  repeat: true,
+                ),
+              ),
+                      GridView.builder(
+                        itemCount: favoriteDevilFruits.length,
+                        itemBuilder: (context, index) {
+                          if (!(favoriteDevilFruits[index]
+                                  .filename
+                                  .contains('.png') ||
+                              favoriteDevilFruits[index]
+                                  .filename
+                                  .contains('.jpg'))) {
+                            return InkWell(
+                              onTap: () {
+                                context.go(
+                                    '/home/detail/${favoriteDevilFruits[index].id}');
+                              },
+                              child: NoImageFruit(
+                                  state: favoriteDevilFruits, index: index),
+                            );
+                          } else {
+                            return InkWell(
+                              onTap: () {
+                                context.go(
+                                    '/home/detail/${favoriteDevilFruits[index].id}');
+                              },
+                              child: ImageFruit(
+                                  state: favoriteDevilFruits, index: index),
+                            );
+                          }
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 15,
+                        ),
+                        padding: const EdgeInsets.all(15),
                       ),
-                      padding: const EdgeInsets.all(15),
-                    ),
+                    ]),
             ),
           ),
         );

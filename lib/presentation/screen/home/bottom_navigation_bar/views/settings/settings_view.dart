@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -20,7 +21,7 @@ class SettingsView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10)),
             child: ListView(
               padding: const EdgeInsets.all(15),
-              children: const [
+              children: [
                 Column(
                   children: [
                     Padding(
@@ -35,10 +36,22 @@ class SettingsView extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       child: AppThemeSetting(),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: SignOutButton(),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(85, 0, 0, 0),
+                          child: SignOutButton(),
+                        ),
+                        SizedBox(width: 25),
+                        Center(
+                        child: Lottie.asset(
+                          'assets/animations/bee.json',
+                          width: 50,
+                                height: 30,
+                                fit: BoxFit.cover,))
+                      ],
+                    ),
                   ],
                 )
               ],

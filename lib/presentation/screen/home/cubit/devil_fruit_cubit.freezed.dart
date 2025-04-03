@@ -27,6 +27,7 @@ mixin _$DevilFruitState {
   List<DevilFruit> get favourtieDevilFruitList =>
       throw _privateConstructorUsedError;
   bool get isEating => throw _privateConstructorUsedError;
+  bool get isConfetti => throw _privateConstructorUsedError;
   LatLng get newPosition => throw _privateConstructorUsedError;
 
   /// Create a copy of DevilFruitState
@@ -53,6 +54,7 @@ abstract class $DevilFruitStateCopyWith<$Res> {
       String favTypeFilter,
       List<DevilFruit> favourtieDevilFruitList,
       bool isEating,
+      bool isConfetti,
       LatLng newPosition});
 }
 
@@ -81,6 +83,7 @@ class _$DevilFruitStateCopyWithImpl<$Res, $Val extends DevilFruitState>
     Object? favTypeFilter = null,
     Object? favourtieDevilFruitList = null,
     Object? isEating = null,
+    Object? isConfetti = null,
     Object? newPosition = null,
   }) {
     return _then(_value.copyWith(
@@ -124,6 +127,10 @@ class _$DevilFruitStateCopyWithImpl<$Res, $Val extends DevilFruitState>
           ? _value.isEating
           : isEating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isConfetti: null == isConfetti
+          ? _value.isConfetti
+          : isConfetti // ignore: cast_nullable_to_non_nullable
+              as bool,
       newPosition: null == newPosition
           ? _value.newPosition
           : newPosition // ignore: cast_nullable_to_non_nullable
@@ -151,6 +158,7 @@ abstract class _$$DevilFruitStateImplCopyWith<$Res>
       String favTypeFilter,
       List<DevilFruit> favourtieDevilFruitList,
       bool isEating,
+      bool isConfetti,
       LatLng newPosition});
 }
 
@@ -177,6 +185,7 @@ class __$$DevilFruitStateImplCopyWithImpl<$Res>
     Object? favTypeFilter = null,
     Object? favourtieDevilFruitList = null,
     Object? isEating = null,
+    Object? isConfetti = null,
     Object? newPosition = null,
   }) {
     return _then(_$DevilFruitStateImpl(
@@ -220,6 +229,10 @@ class __$$DevilFruitStateImplCopyWithImpl<$Res>
           ? _value.isEating
           : isEating // ignore: cast_nullable_to_non_nullable
               as bool,
+      isConfetti: null == isConfetti
+          ? _value.isConfetti
+          : isConfetti // ignore: cast_nullable_to_non_nullable
+              as bool,
       newPosition: null == newPosition
           ? _value.newPosition
           : newPosition // ignore: cast_nullable_to_non_nullable
@@ -242,6 +255,7 @@ class _$DevilFruitStateImpl extends _DevilFruitState {
       this.favTypeFilter = '',
       final List<DevilFruit> favourtieDevilFruitList = const [],
       this.isEating = false,
+      this.isConfetti = false,
       this.newPosition = const LatLng(0, 0)})
       : _devilFruit = devilFruit,
         _favourtieDevilFruitList = favourtieDevilFruitList,
@@ -292,11 +306,14 @@ class _$DevilFruitStateImpl extends _DevilFruitState {
   final bool isEating;
   @override
   @JsonKey()
+  final bool isConfetti;
+  @override
+  @JsonKey()
   final LatLng newPosition;
 
   @override
   String toString() {
-    return 'DevilFruitState(status: $status, devilFruit: $devilFruit, searchFilter: $searchFilter, favSearchFilter: $favSearchFilter, sortBy: $sortBy, favSortBy: $favSortBy, typeFilter: $typeFilter, favTypeFilter: $favTypeFilter, favourtieDevilFruitList: $favourtieDevilFruitList, isEating: $isEating, newPosition: $newPosition)';
+    return 'DevilFruitState(status: $status, devilFruit: $devilFruit, searchFilter: $searchFilter, favSearchFilter: $favSearchFilter, sortBy: $sortBy, favSortBy: $favSortBy, typeFilter: $typeFilter, favTypeFilter: $favTypeFilter, favourtieDevilFruitList: $favourtieDevilFruitList, isEating: $isEating, isConfetti: $isConfetti, newPosition: $newPosition)';
   }
 
   @override
@@ -322,6 +339,8 @@ class _$DevilFruitStateImpl extends _DevilFruitState {
                 other._favourtieDevilFruitList, _favourtieDevilFruitList) &&
             (identical(other.isEating, isEating) ||
                 other.isEating == isEating) &&
+            (identical(other.isConfetti, isConfetti) ||
+                other.isConfetti == isConfetti) &&
             (identical(other.newPosition, newPosition) ||
                 other.newPosition == newPosition));
   }
@@ -339,6 +358,7 @@ class _$DevilFruitStateImpl extends _DevilFruitState {
       favTypeFilter,
       const DeepCollectionEquality().hash(_favourtieDevilFruitList),
       isEating,
+      isConfetti,
       newPosition);
 
   /// Create a copy of DevilFruitState
@@ -363,6 +383,7 @@ abstract class _DevilFruitState extends DevilFruitState {
       final String favTypeFilter,
       final List<DevilFruit> favourtieDevilFruitList,
       final bool isEating,
+      final bool isConfetti,
       final LatLng newPosition}) = _$DevilFruitStateImpl;
   const _DevilFruitState._() : super._();
 
@@ -386,6 +407,8 @@ abstract class _DevilFruitState extends DevilFruitState {
   List<DevilFruit> get favourtieDevilFruitList;
   @override
   bool get isEating;
+  @override
+  bool get isConfetti;
   @override
   LatLng get newPosition;
 

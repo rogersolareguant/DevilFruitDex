@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class EatFruitLoaded extends StatelessWidget {
   final DevilFruit devilFruit;
@@ -20,13 +21,12 @@ class EatFruitLoaded extends StatelessWidget {
     required this.devilFruit,
   });
 
-void _playEatingSound() async {
-  final player = AudioPlayer();
+  void _playEatingSound() async {
+    final player = AudioPlayer();
 
-  await player.setVolume(1.0);
-  await player.play(AssetSource('sounds/eating-sound-effect.mp3'));
-
-}
+    await player.setVolume(1.0);
+    await player.play(AssetSource('sounds/eating-sound-effect.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +70,7 @@ void _playEatingSound() async {
                   child: ListView(
                     children: [
                       Stack(alignment: Alignment.center, children: [
+                        
                         ImagePositionedEat(devilFruit: devilFruit),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(90, 0, 0, 0),
@@ -85,6 +86,7 @@ void _playEatingSound() async {
                                 )),
                           ),
                         ),
+                        
                         Padding(
                           padding: const EdgeInsets.fromLTRB(100, 70, 0, 0),
                           child: Visibility(
@@ -98,7 +100,16 @@ void _playEatingSound() async {
                                       Theme.of(context).dialogBackgroundColor,
                                 )),
                           ),
-                        )
+                        ),
+                        if (state.isConfetti)
+                          Center(
+                            child: Lottie.asset(
+                              'assets/animations/confetti.json',
+                              width: 200,
+                              height: 180,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                       ]),
                       Center(
                         child: Padding(

@@ -18,6 +18,7 @@ class DevilFruitState with _$DevilFruitState {
     @Default('') String favTypeFilter,
     @Default([]) List<DevilFruit> favourtieDevilFruitList,
     @Default(false) bool isEating,
+    @Default(false) bool isConfetti,
     @Default(LatLng(0, 0)) LatLng newPosition,
 
   }) = _DevilFruitState;

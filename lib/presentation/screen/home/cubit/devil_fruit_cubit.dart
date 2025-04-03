@@ -78,7 +78,8 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
           status: DevilFruitStatus.loaded, newPosition: location));
       return location;
     } catch (e) {
-      emit(state.copyWith(status: DevilFruitStatus.error, newPosition: state.newPosition));
+      emit(state.copyWith(
+          status: DevilFruitStatus.error, newPosition: state.newPosition));
       return state.newPosition;
     }
   }
@@ -127,7 +128,12 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
   }
 
   void updateEating(bool isEating) {
-    emit(state.copyWith(status: DevilFruitStatus.loaded, isEating: isEating));
+    emit(state.copyWith(
+        status: DevilFruitStatus.loaded, isEating: isEating, isConfetti: true));
+
+    Future.delayed(const Duration(seconds: 3), () {
+      emit(state.copyWith(isConfetti: false));
+    });
   }
 
   void streamFavourteFruits() {

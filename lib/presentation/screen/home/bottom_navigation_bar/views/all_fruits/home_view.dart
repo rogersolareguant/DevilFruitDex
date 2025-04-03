@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeView extends StatelessWidget {
   final List<DevilFruit> devilFruit;
@@ -66,37 +67,47 @@ class HomeView extends StatelessWidget {
                   ? Center(
                       child: Text(AppLocalizations.of(context)!.noFruit,
                           style: Theme.of(context).textTheme.bodyMedium))
-                  : GridView.builder(
-                      itemCount: devilFruit.length,
-                      itemBuilder: (context, index) {
-                        if (!(devilFruit[index].filename.contains('.png') ||
-                            devilFruit[index].filename.contains('.jpg'))) {
-                          return InkWell(
-                            onTap: () {
-                              context
-                                  .go('/home/detail/${devilFruit[index].id}');
-                            },
-                            child:
-                                NoImageFruit(state: devilFruit, index: index),
-                          );
-                        } else {
-                          return InkWell(
-                            onTap: () {
-                              context
-                                  .go('/home/detail/${devilFruit[index].id}');
-                            },
-                            child: ImageFruit(state: devilFruit, index: index),
-                          );
-                        }
-                      },
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 15,
-                      ),
-                      padding: const EdgeInsets.all(15),
-                    ),
+                  : Stack(
+                    children: [
+                      Positioned.fill(
+                child: Lottie.asset(
+                  'assets/animations/fire.json',
+                  fit: BoxFit.cover,
+                  repeat: true,
+                ),
+              ),
+                       GridView.builder(
+                        itemCount: devilFruit.length,
+                        itemBuilder: (context, index) {
+                          if (!(devilFruit[index].filename.contains('.png') ||
+                              devilFruit[index].filename.contains('.jpg'))) {
+                            return InkWell(
+                              onTap: () {
+                                context
+                                    .go('/home/detail/${devilFruit[index].id}');
+                              },
+                              child:
+                                  NoImageFruit(state: devilFruit, index: index),
+                            );
+                          } else {
+                            return InkWell(
+                              onTap: () {
+                                context
+                                    .go('/home/detail/${devilFruit[index].id}');
+                              },
+                              child: ImageFruit(state: devilFruit, index: index),
+                            );
+                          }
+                        },
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 15,
+                        ),
+                        padding: const EdgeInsets.all(15),
+                      ),]
+                  ),
             ),
           ),
         );
