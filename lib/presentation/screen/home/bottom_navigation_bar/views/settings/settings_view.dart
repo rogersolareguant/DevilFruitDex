@@ -11,55 +11,54 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(builder: (context, state) {
-      return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).dialogBackgroundColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: ListView(
-              padding: const EdgeInsets.all(15),
-              children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: UserProfileSection(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: LanguageSetting(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: AppThemeSetting(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(85, 0, 0, 0),
-                          child: SignOutButton(),
-                        ),
-                        SizedBox(width: 25),
-                        Center(
-                        child: Lottie.asset(
-                          'assets/animations/bee.json',
-                          width: 50,
-                                height: 30,
-                                fit: BoxFit.cover,))
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).dialogBackgroundColor,
+              borderRadius: BorderRadius.circular(10)),
+          child: ListView(
+            padding: const EdgeInsets.all(15),
+            children: [
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: UserProfileSection(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: LanguageSetting(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: AppThemeSetting(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(85, 0, 0, 0),
+                        child: SignOutButton(),
+                      ),
+                      SizedBox(width: 25),
+                      Center(
+                          child: Lottie.asset(
+                        'assets/animations/bee.json',
+                        width: 50,
+                        height: 30,
+                        fit: BoxFit.cover,
+                      ))
+                    ],
+                  ),
+                ],
+              )
+            ],
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }
 

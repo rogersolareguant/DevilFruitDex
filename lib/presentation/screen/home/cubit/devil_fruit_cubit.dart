@@ -132,6 +132,7 @@ class DevilFruitCubit extends Cubit<DevilFruitState> {
         status: DevilFruitStatus.loaded, isEating: isEating, isConfetti: true));
 
     Future.delayed(const Duration(seconds: 3), () {
+      if (isClosed) return;
       emit(state.copyWith(isConfetti: false));
     });
   }

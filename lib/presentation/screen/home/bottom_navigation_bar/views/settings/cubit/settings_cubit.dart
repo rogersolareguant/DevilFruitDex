@@ -14,17 +14,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   SettingsCubit({required UserRepository repository, required this.uid})
       : _repository = repository,
-        super(const SettingsState()) {
-    initialize();
-  }
-
-  late StreamSubscription<String> _subscription;
-
-  Future<void> initialize() async {
-    await loadUserName();
-    await getEmail();
-    streamUserName();
-  }
+        super(const SettingsState());
 
   void updateAppTheme(bool darkMode) {
     emit(state.copyWith(
@@ -121,20 +111,8 @@ class SettingsCubit extends Cubit<SettingsState> {
     }
   }
 
-  void streamUserName() {
-    _subscription = _repository.getUserName(uid).listen((String userName) {
-      emit(state.copyWith(name: userName));
-    });
-  }
-
   void signOut() async {
     FirebaseAuth.instance.signOut();
     emit(state.copyWith(status: SettingsStatus.loading));
-  }
-
-  @override
-  Future<void> close() async {
-    await _subscription.cancel();
-    return super.close();
   }
 }
