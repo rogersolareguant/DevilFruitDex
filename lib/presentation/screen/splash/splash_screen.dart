@@ -20,7 +20,6 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _fadeController;
   final AudioPlayer _player = AudioPlayer();
 
-
   @override
   void initState() {
     super.initState();
@@ -44,11 +43,10 @@ class _SplashScreenState extends State<SplashScreen>
     context.read<SplashScreenCubit>().userLoaded();
   }
 
-Future<void> _playSound() async {
+  Future<void> _playSound() async {
     await _player.setVolume(1.0);
     await _player.play(AssetSource('sounds/intro.mp3'));
-}
-
+  }
 
   @override
   void dispose() {
