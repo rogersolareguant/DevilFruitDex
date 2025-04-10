@@ -182,14 +182,27 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
       ) as _i4.Future<String?>);
 
   @override
-  _i4.Stream<String> getUserName(String? uid) => (super.noSuchMethod(
+  _i4.Future<String> getUserName(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #getUserName,
           [uid],
         ),
-        returnValue: _i4.Stream<String>.empty(),
-        returnValueForMissingStub: _i4.Stream<String>.empty(),
-      ) as _i4.Stream<String>);
+        returnValue: _i4.Future<String>.value(_i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getUserName,
+            [uid],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<String>.value(_i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getUserName,
+            [uid],
+          ),
+        )),
+      ) as _i4.Future<String>);
 
   @override
   _i4.Future<void> setUserName(

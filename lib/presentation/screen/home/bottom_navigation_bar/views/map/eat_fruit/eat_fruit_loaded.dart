@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-class EatFruitLoaded extends StatelessWidget {
+class EatFruitLoaded extends StatefulWidget {
   final DevilFruit devilFruit;
 
   const EatFruitLoaded({
@@ -21,11 +21,28 @@ class EatFruitLoaded extends StatelessWidget {
     required this.devilFruit,
   });
 
-  void _playEatingSound() async {
-    final player = AudioPlayer();
+  @override
+  State<EatFruitLoaded> createState() => _EatFruitLoadedState();
+}
 
-    await player.setVolume(1.0);
-    await player.play(AssetSource('sounds/eating-sound-effect.mp3'));
+class _EatFruitLoadedState extends State<EatFruitLoaded> {
+    final AudioPlayer _player = AudioPlayer();
+    bool isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> _playEatingSound() async {
+    await _player.setVolume(1.0);
+    await _player.play(AssetSource('sounds/eating-sound-effect.mp3'));
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,11 +53,11 @@ class EatFruitLoaded extends StatelessWidget {
           body: Stack(children: [
             AppBar(
                 leading: const GoBackButton(),
-                title: TitleDetailScreen(devilFruit: devilFruit),
+                title: TitleDetailScreen(devilFruit: widget.devilFruit),
                 actions: [
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: DevilFruitDetailId(devilFruit: devilFruit)),
+                      child: DevilFruitDetailId(devilFruit: widget.devilFruit)),
                 ]),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
@@ -48,8 +65,11 @@ class EatFruitLoaded extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: FilledButton(
                       onPressed: () {
+                        if (!isPlaying) {
+                          isPlaying = true;
                         _playEatingSound();
                         context.read<DevilFruitCubit>().updateEating(true);
+                        }
                       },
                       style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(
@@ -71,7 +91,7 @@ class EatFruitLoaded extends StatelessWidget {
                     children: [
                       Stack(alignment: Alignment.center, children: [
                         
-                        ImagePositionedEat(devilFruit: devilFruit),
+                        ImagePositionedEat(devilFruit: widget.devilFruit),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(90, 0, 0, 0),
                           child: Visibility(
@@ -116,7 +136,7 @@ class EatFruitLoaded extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
                           child: Visibility(
                               visible: state.isEating,
-                              child: DevilFruitType(devilFruit: devilFruit)),
+                              child: DevilFruitType(devilFruit: widget.devilFruit)),
                         ),
                       ),
                       Padding(
@@ -124,7 +144,7 @@ class EatFruitLoaded extends StatelessWidget {
                         child: Visibility(
                             visible: state.isEating,
                             child: Text(
-                              '${AppLocalizations.of(context)!.justEat} ${devilFruit.romanName}${AppLocalizations.of(context)!.getPower} ${devilFruit.name}${AppLocalizations.of(context)!.weakWater}',
+                              '${AppLocalizations.of(context)!.justEat} ${widget.devilFruit.romanName}${AppLocalizations.of(context)!.getPower} ${widget.devilFruit.name}${AppLocalizations.of(context)!.weakWater}',
                               style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.justify,
                               softWrap: true,
@@ -142,10 +162,10 @@ class EatFruitLoaded extends StatelessWidget {
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                         child: Visibility(
                           visible: state.isEating,
-                          child: DevilFruitGallery(type: devilFruit.type),
+                          child: DevilFruitGallery(type: widget.devilFruit.type),
                         ),
                       )
                     ],

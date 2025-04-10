@@ -1,4 +1,5 @@
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/map/eat_fruit/eat_fruit_provider.dart';
+import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/change_password/change_password_provider.dart';
 import 'package:devilfruitdex/presentation/screen/home/detail/detail_screen_provider.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/home_screen_provider.dart';
 import 'package:devilfruitdex/presentation/screen/login/create_user/create_user_screen_provider.dart';
@@ -38,6 +39,10 @@ final appRouter = GoRouter(routes: [
             String id = state.pathParameters['id']!;
             return EatFruitProvider(id: id);
           },
+        ),
+        GoRoute(
+          path: 'changepassword',
+          builder: (context, state) => const ChangePasswordProvider(),
         ),
       ]),
 ]);

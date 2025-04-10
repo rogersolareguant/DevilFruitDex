@@ -30,7 +30,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> loadUserName() async {
     try {
-      String userName = (_repository.getUserName(uid)) as String;
+      String userName = await _repository.getUserName(uid);
       emit(state.copyWith(status: SettingsStatus.loaded, name: userName));
     } catch (e) {
       emit(state.copyWith(status: SettingsStatus.error));
@@ -40,7 +40,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> updateName(String userName) async {
     try {
       await _repository.setUserName(uid, userName);
-      emit(state.copyWith(status: SettingsStatus.loaded, name: userName));
+      loadUserName();
     } catch (e) {
       emit(state.copyWith(status: SettingsStatus.error));
     }
@@ -60,59 +60,9 @@ class SettingsCubit extends Cubit<SettingsState> {
     }
   }
 
-  void updateCurrentPassword(String password) {
-    emit(state.copyWith(currentPassword: password));
-  }
-
-  void updateNewPassword(String password) {
-    emit(state.copyWith(newPassword: password));
-  }
-
-  void updateRepeatNewPassword(String password) {
-    emit(state.copyWith(repeatNewPassword: password));
-  }
-
-  void updateCurrentPasswordError(String error) {
-    emit(state.copyWith(currentPasswordError: error));
-  }
-
-  void updateNewPasswordError(String error) {
-    emit(state.copyWith(newPasswordError: error));
-  }
-
-  void updateRepeatNewPasswordError(String error) {
-    emit(state.copyWith(repeatNewPasswordError: error));
-  }
-
-  Future<bool> checkCurrentPasswordOk() async {
-    try {
-      await _repository.reauthenticateWithPassword(state.currentPassword);
-
-      emit(state.copyWith(status: SettingsStatus.loaded));
-
-      return true;
-    } catch (e) {
-      emit(state.copyWith(status: SettingsStatus.error));
-      return false;
-    }
-  }
-
-  Future<bool> updatePasswordOk() async {
-    try {
-      await _repository.reauthenticateWithPassword(state.currentPassword);
-      await _repository.updateUserPassword(state.newPassword);
-
-      emit(state.copyWith(status: SettingsStatus.loaded));
-
-      return true;
-    } catch (e) {
-      emit(state.copyWith(status: SettingsStatus.error));
-      return false;
-    }
-  }
-
   void signOut() async {
     FirebaseAuth.instance.signOut();
     emit(state.copyWith(status: SettingsStatus.loading));
   }
+
 }

@@ -60,20 +60,27 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Stream<String> getUserName(String uid) {
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .snapshots()
-        .map((docSnapshot) => docSnapshot.data()?['name'] ?? '');
+  Future<String> getUserName(String uid) async {
+    try {
+      var doc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      if (doc.exists) {
+        return doc.data()?['name'] ?? ''; // Obtener el nombre del documento
+      }
+      return '';
+    } catch (e) {
+      throw Exception('Error al obtener el nombre');
+    }
   }
 
   @override
   Future<void> setUserName(String uid, String userName) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .set({'userName': userName}, SetOptions(merge: true));
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'name': userName,
+      });
+    } catch (e) {
+      throw Exception('Error al actualizar el nombre');
+    }
   }
 
   @override

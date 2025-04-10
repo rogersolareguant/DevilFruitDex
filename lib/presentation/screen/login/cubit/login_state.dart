@@ -12,3 +12,4 @@ class LoginState with _$LoginState {
   }) = _LoginState;
 }
 
+

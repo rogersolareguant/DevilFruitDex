@@ -9,7 +9,7 @@ abstract class UserRepository {
 
   Future<String?> getEmail();
 
-  Stream<String> getUserName(String uid);
+  Future<String> getUserName(String uid);
 
   Future<void> setUserName(String uid, String userName);
 

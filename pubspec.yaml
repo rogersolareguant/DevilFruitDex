@@ -35,6 +35,7 @@ dependencies:
   carousel_slider: ^5.0.0
   cloud_firestore: ^5.5.1
   cupertino_icons: ^1.0.8
+  showCupertinoModalBottomSheet: ^2.0.0
   dio: ^5.7.0
   equatable: ^2.0.7
   firebase_auth: ^5.3.4
@@ -91,7 +92,6 @@ flutter:
     - assets/images/
     - assets/sounds/
     - assets/animations/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

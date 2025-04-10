@@ -21,12 +21,6 @@ mixin _$SettingsState {
   Locale get language => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get currentPassword => throw _privateConstructorUsedError;
-  String get newPassword => throw _privateConstructorUsedError;
-  String get repeatNewPassword => throw _privateConstructorUsedError;
-  String get currentPasswordError => throw _privateConstructorUsedError;
-  String get newPasswordError => throw _privateConstructorUsedError;
-  String get repeatNewPasswordError => throw _privateConstructorUsedError;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -46,13 +40,7 @@ abstract class $SettingsStateCopyWith<$Res> {
       bool darkMode,
       Locale language,
       String name,
-      String email,
-      String currentPassword,
-      String newPassword,
-      String repeatNewPassword,
-      String currentPasswordError,
-      String newPasswordError,
-      String repeatNewPasswordError});
+      String email});
 }
 
 /// @nodoc
@@ -75,12 +63,6 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
     Object? language = null,
     Object? name = null,
     Object? email = null,
-    Object? currentPassword = null,
-    Object? newPassword = null,
-    Object? repeatNewPassword = null,
-    Object? currentPasswordError = null,
-    Object? newPasswordError = null,
-    Object? repeatNewPasswordError = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -103,30 +85,6 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPassword: null == currentPassword
-          ? _value.currentPassword
-          : currentPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatNewPassword: null == repeatNewPassword
-          ? _value.repeatNewPassword
-          : repeatNewPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      currentPasswordError: null == currentPasswordError
-          ? _value.currentPasswordError
-          : currentPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPasswordError: null == newPasswordError
-          ? _value.newPasswordError
-          : newPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatNewPasswordError: null == repeatNewPasswordError
-          ? _value.repeatNewPasswordError
-          : repeatNewPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -144,13 +102,7 @@ abstract class _$$SettingStateImplCopyWith<$Res>
       bool darkMode,
       Locale language,
       String name,
-      String email,
-      String currentPassword,
-      String newPassword,
-      String repeatNewPassword,
-      String currentPasswordError,
-      String newPasswordError,
-      String repeatNewPasswordError});
+      String email});
 }
 
 /// @nodoc
@@ -171,12 +123,6 @@ class __$$SettingStateImplCopyWithImpl<$Res>
     Object? language = null,
     Object? name = null,
     Object? email = null,
-    Object? currentPassword = null,
-    Object? newPassword = null,
-    Object? repeatNewPassword = null,
-    Object? currentPasswordError = null,
-    Object? newPasswordError = null,
-    Object? repeatNewPasswordError = null,
   }) {
     return _then(_$SettingStateImpl(
       status: null == status
@@ -199,30 +145,6 @@ class __$$SettingStateImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      currentPassword: null == currentPassword
-          ? _value.currentPassword
-          : currentPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPassword: null == newPassword
-          ? _value.newPassword
-          : newPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatNewPassword: null == repeatNewPassword
-          ? _value.repeatNewPassword
-          : repeatNewPassword // ignore: cast_nullable_to_non_nullable
-              as String,
-      currentPasswordError: null == currentPasswordError
-          ? _value.currentPasswordError
-          : currentPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
-      newPasswordError: null == newPasswordError
-          ? _value.newPasswordError
-          : newPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatNewPasswordError: null == repeatNewPasswordError
-          ? _value.repeatNewPasswordError
-          : repeatNewPasswordError // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -235,13 +157,7 @@ class _$SettingStateImpl implements _SettingState {
       this.darkMode = false,
       this.language = const Locale('en'),
       this.name = '',
-      this.email = '',
-      this.currentPassword = '',
-      this.newPassword = '',
-      this.repeatNewPassword = '',
-      this.currentPasswordError = '',
-      this.newPasswordError = '',
-      this.repeatNewPasswordError = ''});
+      this.email = ''});
 
   @override
   @JsonKey()
@@ -258,28 +174,10 @@ class _$SettingStateImpl implements _SettingState {
   @override
   @JsonKey()
   final String email;
-  @override
-  @JsonKey()
-  final String currentPassword;
-  @override
-  @JsonKey()
-  final String newPassword;
-  @override
-  @JsonKey()
-  final String repeatNewPassword;
-  @override
-  @JsonKey()
-  final String currentPasswordError;
-  @override
-  @JsonKey()
-  final String newPasswordError;
-  @override
-  @JsonKey()
-  final String repeatNewPasswordError;
 
   @override
   String toString() {
-    return 'SettingsState(status: $status, darkMode: $darkMode, language: $language, name: $name, email: $email, currentPassword: $currentPassword, newPassword: $newPassword, repeatNewPassword: $repeatNewPassword, currentPasswordError: $currentPasswordError, newPasswordError: $newPasswordError, repeatNewPasswordError: $repeatNewPasswordError)';
+    return 'SettingsState(status: $status, darkMode: $darkMode, language: $language, name: $name, email: $email)';
   }
 
   @override
@@ -293,35 +191,12 @@ class _$SettingStateImpl implements _SettingState {
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.currentPassword, currentPassword) ||
-                other.currentPassword == currentPassword) &&
-            (identical(other.newPassword, newPassword) ||
-                other.newPassword == newPassword) &&
-            (identical(other.repeatNewPassword, repeatNewPassword) ||
-                other.repeatNewPassword == repeatNewPassword) &&
-            (identical(other.currentPasswordError, currentPasswordError) ||
-                other.currentPasswordError == currentPasswordError) &&
-            (identical(other.newPasswordError, newPasswordError) ||
-                other.newPasswordError == newPasswordError) &&
-            (identical(other.repeatNewPasswordError, repeatNewPasswordError) ||
-                other.repeatNewPasswordError == repeatNewPasswordError));
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      status,
-      darkMode,
-      language,
-      name,
-      email,
-      currentPassword,
-      newPassword,
-      repeatNewPassword,
-      currentPasswordError,
-      newPasswordError,
-      repeatNewPasswordError);
+  int get hashCode =>
+      Object.hash(runtimeType, status, darkMode, language, name, email);
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -338,13 +213,7 @@ abstract class _SettingState implements SettingsState {
       final bool darkMode,
       final Locale language,
       final String name,
-      final String email,
-      final String currentPassword,
-      final String newPassword,
-      final String repeatNewPassword,
-      final String currentPasswordError,
-      final String newPasswordError,
-      final String repeatNewPasswordError}) = _$SettingStateImpl;
+      final String email}) = _$SettingStateImpl;
 
   @override
   SettingsStatus get status;
@@ -356,18 +225,6 @@ abstract class _SettingState implements SettingsState {
   String get name;
   @override
   String get email;
-  @override
-  String get currentPassword;
-  @override
-  String get newPassword;
-  @override
-  String get repeatNewPassword;
-  @override
-  String get currentPasswordError;
-  @override
-  String get newPasswordError;
-  @override
-  String get repeatNewPasswordError;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
