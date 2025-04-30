@@ -11,6 +11,7 @@ import 'package:devilfruitdex/domain/repository/favourites_repository.dart';
 import 'package:devilfruitdex/domain/repository/location_repository.dart';
 import 'package:devilfruitdex/firebase_options.dart';
 import 'package:devilfruitdex/presentation/navigation/route.dart';
+import 'package:devilfruitdex/presentation/screen/cubit/connectivity_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/cubit/settings_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/home/cubit/devil_fruit_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/login/cubit/login_cubit.dart';
@@ -23,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -77,7 +79,8 @@ class MainApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => LoginCubit(
-              repository: context.read<UserRepository>(),
+              repository: context.read<UserRepository>(), 
+              connectionChecker: InternetConnectionChecker.instance,
             ),
           ),
           BlocProvider(
@@ -98,6 +101,10 @@ class MainApp extends StatelessWidget {
                   repository: context.read<UserRepository>(),
                   uid: currentUser!.uid);
             },
+          ),
+          BlocProvider(
+            create: (context) =>
+                ConnectivityCubit(InternetConnectionChecker.instance),
           ),
         ],
         child: BlocBuilder<SettingsCubit, SettingsState>(

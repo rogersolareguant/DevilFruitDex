@@ -5,6 +5,7 @@ import 'package:devilfruitdex/presentation/screen/widgets/screen_error_state.dar
 import 'package:devilfruitdex/presentation/screen/widgets/screen_loading_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class CreateUserScreenProvider extends StatelessWidget {
   const CreateUserScreenProvider({super.key});
@@ -12,8 +13,9 @@ class CreateUserScreenProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          LoginCubit(repository: context.read<UserRepository>()),
+      create: (context) => LoginCubit(
+          repository: context.read<UserRepository>(),
+          connectionChecker: InternetConnectionChecker.instance),
       child: const CreateUserScreen(),
     );
   }

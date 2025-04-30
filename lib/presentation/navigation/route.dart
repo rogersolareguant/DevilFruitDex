@@ -5,6 +5,8 @@ import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/hom
 import 'package:devilfruitdex/presentation/screen/login/create_user/create_user_screen_provider.dart';
 import 'package:devilfruitdex/presentation/screen/login/login/login_screen_provider.dart';
 import 'package:devilfruitdex/presentation/screen/splash/splash_screen.dart';
+import 'package:devilfruitdex/presentation/screen/widgets/screen_no_connection.dart';
+import 'package:devilfruitdex/presentation/screen/widgets/screen_no_connection_login.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(routes: [
@@ -45,4 +47,12 @@ final appRouter = GoRouter(routes: [
           builder: (context, state) => const ChangePasswordProvider(),
         ),
       ]),
+  GoRoute(
+    path: '/no-connection',
+    builder: (context, state) => const ScreenNoConnection(),
+  ),
+  GoRoute(
+    path: '/no-connection-login',
+    builder: (context, state) => const ScreenNoConnectionLogin(),
+  ),
 ]);

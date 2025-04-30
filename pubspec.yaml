@@ -35,7 +35,6 @@ dependencies:
   carousel_slider: ^5.0.0
   cloud_firestore: ^5.5.1
   cupertino_icons: ^1.0.8
-  showCupertinoModalBottomSheet: ^2.0.0
   dio: ^5.7.0
   equatable: ^2.0.7
   firebase_auth: ^5.3.4
@@ -53,6 +52,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   geolocator: ^9.0.2
   go_router: ^14.6.1
+  internet_connection_checker: ^3.0.1
   intl: any
   intl_utils: ^2.8.7
   json_annotation: ^4.6.0

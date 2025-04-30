@@ -30,17 +30,23 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> loadUserName() async {
     try {
-      String userName = await _repository.getUserName(uid);
-      emit(state.copyWith(status: SettingsStatus.loaded, name: userName));
+      String name = await _repository.getUserName(uid);
+      emit(state.copyWith(
+        status: SettingsStatus.loaded,
+        name: name,
+        email: state.email,
+        language: state.language,
+        darkMode: state.darkMode,
+      ));
     } catch (e) {
       emit(state.copyWith(status: SettingsStatus.error));
     }
   }
 
-  Future<void> updateName(String userName) async {
+  Future<void> updateName(String name) async {
     try {
-      await _repository.setUserName(uid, userName);
-      loadUserName();
+      await _repository.setUserName(uid, name);
+      emit(state.copyWith(name: name, status: SettingsStatus.loaded));
     } catch (e) {
       emit(state.copyWith(status: SettingsStatus.error));
     }
@@ -51,7 +57,13 @@ class SettingsCubit extends Cubit<SettingsState> {
       String? email = await _repository.getEmail();
 
       if (email != null) {
-        emit(state.copyWith(status: SettingsStatus.loaded, email: email));
+        emit(state.copyWith(
+          status: SettingsStatus.loaded,
+          email: email,
+          name: state.name,
+          language: state.language,
+          darkMode: state.darkMode,
+        ));
       } else {
         emit(state.copyWith(status: SettingsStatus.error));
       }
@@ -64,5 +76,4 @@ class SettingsCubit extends Cubit<SettingsState> {
     FirebaseAuth.instance.signOut();
     emit(state.copyWith(status: SettingsStatus.loading));
   }
-
 }

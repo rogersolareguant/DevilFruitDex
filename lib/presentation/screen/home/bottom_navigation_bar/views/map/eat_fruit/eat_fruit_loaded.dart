@@ -26,12 +26,13 @@ class EatFruitLoaded extends StatefulWidget {
 }
 
 class _EatFruitLoadedState extends State<EatFruitLoaded> {
-    final AudioPlayer _player = AudioPlayer();
+    late final AudioPlayer _player;
     bool isPlaying = false;
 
   @override
   void initState() {
     super.initState();
+    _player = AudioPlayer();
   }
 
   Future<void> _playEatingSound() async {

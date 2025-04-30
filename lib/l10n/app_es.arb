@@ -24,6 +24,9 @@
     "changedSucces": "Contraseña cambiada con éxito",
     "incorrectCurrentPassword": "Contraseña actual incorrecta",
 
+    "noConnection": "Sin Conexión",
+    "checkNetwork": "Sin conexión a internet. Por favor, comprueba tu red",
+    "welcomeBack": "¡Bienvenido de nuevo!",
 
     "eat": "Comer?",
     "justEat": "Acabas de comer la ",

@@ -64,7 +64,7 @@ class UserRepositoryImpl extends UserRepository {
     try {
       var doc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (doc.exists) {
-        return doc.data()?['name'] ?? ''; // Obtener el nombre del documento
+        return doc.data()?['name'] ?? '';
       }
       return '';
     } catch (e) {
@@ -73,10 +73,10 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<void> setUserName(String uid, String userName) async {
+  Future<void> setUserName(String uid, String name) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(uid).update({
-        'name': userName,
+        'name': name,
       });
     } catch (e) {
       throw Exception('Error al actualizar el nombre');

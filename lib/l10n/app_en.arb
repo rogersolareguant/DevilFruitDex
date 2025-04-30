@@ -24,6 +24,9 @@
     "changedSucces": "Password changed successfully",
     "incorrectCurrentPassword": "Incorrect current password",
 
+    "noConnection": "No Connection",
+    "checkNetwork": "No internet connection. Please check your network",
+    "welcomeBack": "Welcome Back!",
 
     "eat": "Eat?",
     "justEat": "You just ate the ",

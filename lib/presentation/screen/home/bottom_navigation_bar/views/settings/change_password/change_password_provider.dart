@@ -1,9 +1,9 @@
 import 'package:devilfruitdex/domain/repository/user_repository.dart';
-import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/home_screen_provider.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/change_password/change_password.dart';
 import 'package:devilfruitdex/presentation/screen/home/bottom_navigation_bar/views/settings/change_password/cubit/change_password_cubit.dart';
 import 'package:devilfruitdex/presentation/screen/widgets/screen_error_state.dart';
 import 'package:devilfruitdex/presentation/screen/widgets/screen_loading_state.dart';
+import 'package:devilfruitdex/presentation/screen/widgets/screen_success_change_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +33,7 @@ class ChangePasswordScreen extends StatelessWidget {
               return const ChangePassword();
 
             case ChangePasswordStatus.loaded:
-              return const HomeScreenProvider();
+              return const ScreenSuccessChangePassword();
 
             case ChangePasswordStatus.loading:
               return const ScreenLoadingState();

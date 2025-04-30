@@ -15,7 +15,6 @@ class HomeScreenProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final User? currentUser = FirebaseAuth.instance.currentUser;
 
     if (currentUser == null) {

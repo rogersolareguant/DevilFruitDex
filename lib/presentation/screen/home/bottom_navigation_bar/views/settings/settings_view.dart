@@ -63,8 +63,21 @@ class SettingsView extends StatelessWidget {
   }
 }
 
-class UserProfileSection extends StatelessWidget {
+class UserProfileSection extends StatefulWidget {
   const UserProfileSection({super.key});
+
+  @override
+  State<UserProfileSection> createState() => _UserProfileSectionState();
+}
+
+class _UserProfileSectionState extends State<UserProfileSection> {
+  final TextEditingController nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +103,7 @@ class UserProfileSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                padding: const EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -101,37 +114,43 @@ class UserProfileSection extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () {
+                        nameController.text = state.name;
+
                         final platform = Theme.of(context).platform;
 
                         if (platform == TargetPlatform.iOS) {
-                          showCupertinoModalPopup(
+                          showCupertinoDialog(
                             context: context,
                             builder: (context) {
-                              return BlocProvider.value(
-                                value: context.read<SettingsCubit>(),
-                                child: CupertinoActionSheet(
-                                  title: Text(AppLocalizations.of(context)!.editName),
-                                  message: CupertinoTextField(
-                                    placeholder: AppLocalizations.of(context)!
-                                        .enterYourName,
-                                    maxLength: 7,
-                                    onChanged: (value) {
-                                      if (value.length <= 7) {
-                                        context
-                                            .read<SettingsCubit>()
-                                            .updateName(value);
-                                      }
-                                    },
-                                  ),
-                                  actions: [
-                                    CupertinoActionSheetAction(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(AppLocalizations.of(context)!.save),
+                              return CupertinoAlertDialog(
+                                title: Text(
+                                    AppLocalizations.of(context)!.editName),
+                                content: Column(
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    CupertinoTextField(
+                                      controller: nameController,
+                                      placeholder: AppLocalizations.of(context)!
+                                          .enterYourName,
+                                      maxLength: 7,
                                     ),
                                   ],
                                 ),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    onPressed: () {
+                                      final newName =
+                                          nameController.text.trim();
+                                      if (newName.isNotEmpty &&
+                                          newName.length <= 7) {
+                                        context.read<SettingsCubit>().updateName(newName);
+                                      }
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                        AppLocalizations.of(context)!.save),
+                                  )
+                                ],
                               );
                             },
                           );
@@ -144,38 +163,43 @@ class UserProfileSection extends StatelessWidget {
                                 child: AlertDialog(
                                   title: Text(
                                     AppLocalizations.of(context)!.editName,
-                                    style: Theme.of(context).textTheme.displayMedium,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
                                   ),
                                   content: TextField(
+                                    controller: nameController,
                                     maxLength: 7,
-
-                                    onChanged: (value) {
-                                      if (value.length <= 7) {
-                                        context
-                                            .read<SettingsCubit>()
-                                            .updateName(value);
-                                      }
-                                    },
                                     style: TextStyle(
-                                      color: Theme.of(context).focusColor,
-                                    ),
+                                        color: Theme.of(context).focusColor),
                                     decoration: InputDecoration(
                                       counterText: "",
                                       hintText: AppLocalizations.of(context)!
                                           .enterYourName,
                                       hintStyle: TextStyle(
-                                          color: Theme.of(context).canvasColor,
-                                          fontSize: 15),
-                                      border: OutlineInputBorder(),
+                                        color: Theme.of(context).canvasColor,
+                                        fontSize: 15,
+                                      ),
+                                      border: const OutlineInputBorder(),
                                     ),
                                   ),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
+                                        final newName =
+                                            nameController.text.trim();
+                                        if (newName.isNotEmpty &&
+                                            newName.length <= 7) {
+                                          context
+                                              .read<SettingsCubit>()
+                                              .updateName(
+                                                  newName); // Update on save
+                                        }
                                         Navigator.pop(context);
                                       },
-                                      child: Text(AppLocalizations.of(context)!.save),
-                                    ),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.save),
+                                    )
                                   ],
                                 ),
                               );
@@ -209,8 +233,6 @@ class UserProfileSection extends StatelessWidget {
     );
   }
 }
-
-
 
 class LanguageSetting extends StatelessWidget {
   const LanguageSetting({

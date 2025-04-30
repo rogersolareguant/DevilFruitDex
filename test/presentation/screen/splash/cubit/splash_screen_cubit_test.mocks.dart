@@ -207,14 +207,14 @@ class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   @override
   _i4.Future<void> setUserName(
     String? uid,
-    String? userName,
+    String? name,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #setUserName,
           [
             uid,
-            userName,
+            name,
           ],
         ),
         returnValue: _i4.Future<void>.value(),
